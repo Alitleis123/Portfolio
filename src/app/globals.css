@@ -1,26 +1,259 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Core palette */
+  --background: #0b0d14;
+  --foreground: #f5f7ff;
+
+  /* Accent colors */
+  --accent-indigo: #6366f1;
+  --accent-fuchsia: #d946ef;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-geist-sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial);
+  --font-mono: var(--font-geist-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New");
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Base document styles */
+html {
+  scroll-behavior: auto;
 }
 
 body {
+  min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Subtle selection styling */
+::selection {
+  background: rgba(99, 102, 241, 0.35);
+}
+
+/* Utility helpers */
+.glow-indigo {
+  box-shadow: 0 0 120px rgba(99, 102, 241, 0.35);
+}
+
+.glow-fuchsia {
+  box-shadow: 0 0 120px rgba(217, 70, 239, 0.35);
+}
+
+/* Layout helpers */
+.section {
+  padding-top: 4.5rem;
+  padding-bottom: 6rem;
+}
+
+.container {
+  max-width: 72rem; /* 1152px */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem; /* 24px */
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-top: 6rem;
+    padding-bottom: 7.5rem;
+  }
+}
+
+/* =========================
+   Global depth & polish
+   ========================= */
+
+/* Subtle film grain / noise for depth */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
+/* Soft vignette around screen edges and fixed ambient background layer */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(
+      1800px 900px at 50% -600px,
+      rgba(99, 102, 241, 0.22),
+      transparent 75%
+    ),
+    radial-gradient(
+      1400px 800px at 85% -200px,
+      rgba(217, 70, 239, 0.18),
+      transparent 78%
+    ),
+    radial-gradient(
+      1200px 700px at 15% -250px,
+      rgba(56, 189, 248, 0.14),
+      transparent 80%
+    ),
+    radial-gradient(
+      circle at center,
+      transparent 68%,
+      rgba(0, 0, 0, 0.26) 100%
+    );
+}
+
+/* Section divider line (optional utility) */
+.section-divider {
+  position: relative;
+}
+
+.section-divider::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 60%;
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+}
+
+/* Modern scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to bottom,
+    rgba(99, 102, 241, 0.6),
+    rgba(217, 70, 239, 0.6)
+  );
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    to bottom,
+    rgba(99, 102, 241, 0.9),
+    rgba(217, 70, 239, 0.9)
+  );
+}
+
+/* =========================
+   Global components & polish
+   ========================= */
+
+/* Floating navbar offset helper (keeps anchors clean) */
+section {
+  scroll-margin-top: 5rem;
+}
+
+/* Glass card utility (used by About / Tech / Resume / Connect) */
+.glass-card {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.04)
+  );
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 1rem;
+}
+
+/* Hover lift + glow (subtle, reusable) */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 0 0 1px rgba(99, 102, 241, 0.15),
+    0 20px 40px rgba(99, 102, 241, 0.18);
+}
+
+/* Gradient text utility (used for headers like Connect) */
+.gradient-text {
+  background: linear-gradient(
+    90deg,
+    var(--accent-indigo),
+    var(--accent-fuchsia)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Link underline animation (unique, non-template feel) */
+.underline-hover {
+  position: relative;
+}
+
+.underline-hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--accent-indigo),
+    transparent
+  );
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.underline-hover:hover::after {
+  transform: scaleX(1);
+}
+
+/* Connect links glow */
+.connect-link:hover {
+  box-shadow: 0 0 40px rgba(217, 70, 239, 0.25);
+}
+
+/* Reduce vignette strength slightly on large screens */
+@media (min-width: 1024px) {
+  body::after {
+    background:
+      radial-gradient(
+        1400px 700px at 50% -300px,
+        rgba(99, 102, 241, 0.18),
+        transparent 72%
+      ),
+      radial-gradient(
+        1000px 600px at 80% 10%,
+        rgba(217, 70, 239, 0.12),
+        transparent 78%
+      ),
+      radial-gradient(
+        circle at center,
+        transparent 70%,
+        rgba(0, 0, 0, 0.22) 100%
+      );
+  }
 }
