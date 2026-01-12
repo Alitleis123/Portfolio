@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
+import BackgroundRings from "./components/BackgroundRings";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -14,7 +15,8 @@ const fadeUp: Variants = {
 export default function Home() {
   return (
     <>
-      <div className="relative min-h-screen overflow-hidden bg-[#0b0d12] text-white">
+      <div className="relative min-h-screen overflow-hidden text-white">
+        <BackgroundRings />
 
         <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
           <div className="absolute -right-40 top-1/2 h-[700px] w-[700px] -translate-y-1/2 rounded-full bg-gradient-to-br from-indigo-500/20 via-sky-500/10 to-transparent blur-[120px]" />
@@ -40,7 +42,7 @@ export default function Home() {
 
             {/* RIGHT — IMAGE + INTRO */}
             <div className="flex justify-end">
-              <div className="relative w-full max-w-md rounded-2xl border border-white/10 bg-[#0f1117] p-6">
+              <div className="relative w-full max-w-md rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl p-6">
                 <div className="mb-6 h-64 w-full rounded-xl bg-black/40 flex items-center justify-center text-zinc-500">
                   Portrait image
                 </div>

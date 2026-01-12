@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import CanvasBackground from "./components/CanvasBackground";
+import BackgroundRings from "./components/BackgroundRings";
 
 export const metadata: Metadata = {
   title: "Ali Tleis · Software Engineer",
@@ -15,11 +15,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="relative bg-[#050507] text-white antialiased">
-        {/* Canvas / animated background */}
-        <CanvasBackground />
-
-        {/* Page content */}
+      <body className="relative text-white antialiased">
+        <BackgroundRings />
         <main className="relative z-10">{children}</main>
       </body>
     </html>
