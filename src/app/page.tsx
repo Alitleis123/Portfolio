@@ -37,20 +37,68 @@ export default function Home() {
                 Creative Technologist
               </p>
 
-              <div className="mt-10 h-px w-24 bg-gradient-to-r from-zinc-500 to-transparent" />
+              <p className="mt-6 max-w-lg text-base leading-7 text-zinc-300">
+                Lebanese‑American, 19‑year‑old Computer Science student at Northeastern University (Class of 2028),
+                building clean, high‑performance full‑stack applications with a focus on thoughtful UI and motion.
+              </p>
+
+              <div className="mt-10 flex flex-wrap items-center gap-4 pointer-events-auto">
+                <a
+                  href="/resume.pdf"
+                  className="rounded-xl bg-indigo-500/90 px-6 py-3 text-sm font-medium text-white transition hover:bg-indigo-500"
+                >
+                  Download Resume
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/"
+                  target="_blank"
+                  className="rounded-xl border border-white/20 bg-white/5 px-6 py-3 text-sm font-medium text-white/90 backdrop-blur transition hover:bg-white/10"
+                >
+                  LinkedIn
+                </a>
+
+                <a
+                  href="https://github.com/Alitleis123"
+                  target="_blank"
+                  className="rounded-xl border border-white/15 bg-black/30 px-6 py-3 text-sm font-medium text-white/80 transition hover:bg-white/10"
+                >
+                  GitHub
+                </a>
+              </div>
+
+              <div className="mt-10 h-px w-40 bg-gradient-to-r from-zinc-500 to-transparent" />
+
+              <div className="mt-10 grid gap-4 sm:grid-cols-2">
+                {[
+                  { title: "What I Build", text: "Full‑stack web apps, APIs, and interactive UIs." },
+                  { title: "Tech I Love", text: "React, Next.js, TypeScript, Node, Framer Motion." },
+                  { title: "Interests", text: "Cars, fitness, game development, problem solving." },
+                  { title: "Mindset", text: "Clean architecture, performance, and polish." },
+                ].map((item) => (
+                  <div
+                    key={item.title}
+                    className="rounded-xl border border-white/15 bg-black/30 p-4 backdrop-blur transition hover:bg-white/10"
+                  >
+                    <div className="text-sm font-semibold text-white">{item.title}</div>
+                    <div className="mt-1 text-sm text-zinc-400">{item.text}</div>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* RIGHT — IMAGE + INTRO */}
             <div className="flex justify-end">
               <div className="relative w-full max-w-md rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl p-6">
-                <div className="mb-6 h-64 w-full rounded-xl bg-black/40 flex items-center justify-center text-zinc-500">
-                  Portrait image
+                <div className="mb-6 h-64 w-full rounded-xl bg-gradient-to-br from-indigo-500/20 via-zinc-500/10 to-black/40 flex items-center justify-center text-zinc-400">
+                  Portrait Image
                 </div>
 
                 <p className="text-sm leading-7 text-zinc-400">
                   Computer science student with a strong interest in software engineering,
                   focused on clean architecture, thoughtful UI, and motion‑driven design.
                 </p>
+                <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent" />
               </div>
             </div>
 
@@ -66,7 +114,14 @@ export default function Home() {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          <h2 className="mb-12 text-3xl font-bold">Projects</h2>
+          <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-zinc-300 to-slate-400">
+            Selected Projects
+          </h2>
+
+          <p className="mb-12 max-w-2xl text-lg text-zinc-300">
+            A curated selection of projects focused on clean architecture,
+            expressive UI, and thoughtful interaction.
+          </p>
 
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {[1, 2, 3, 4].map((i) => (
