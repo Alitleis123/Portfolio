@@ -14,92 +14,51 @@ const fadeUp: Variants = {
 export default function Home() {
   return (
     <>
-      <div className="relative min-h-screen -mt-32 pt-32 overflow-hidden bg-[#050507] text-white">
+      <div className="relative min-h-screen overflow-hidden bg-[#0b0d12] text-white">
 
-        {/* BACKGROUND GRADIENT (extended to avoid top band) */}
-        <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute -top-[900px] left-1/2 h-[1600px] w-[1600px] -translate-x-1/2 rounded-full bg-indigo-500/25 blur-[240px]" />
-          <div className="absolute top-[15%] right-[-500px] h-[1000px] w-[1000px] rounded-full bg-fuchsia-500/20 blur-[200px]" />
-          <div className="absolute bottom-[-500px] left-[-400px] h-[1000px] w-[1000px] rounded-full bg-cyan-500/20 blur-[220px]" />
+        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+          <div className="absolute -right-40 top-1/2 h-[700px] w-[700px] -translate-y-1/2 rounded-full bg-gradient-to-br from-indigo-500/20 via-sky-500/10 to-transparent blur-[120px]" />
+          <div className="absolute -left-40 top-1/3 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-gradient-to-br from-slate-700/30 via-slate-800/20 to-transparent blur-[140px]" />
         </div>
 
-        {/* HERO */}
-        <section className="relative z-10 flex min-h-[50vh] flex-col items-center justify-center px-6 text-center max-w-6xl mx-auto">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="mb-6 text-5xl font-extrabold tracking-tight sm:text-7xl"
-          >
-            Ali Tleis
-          </motion.h1>
+        <section className="relative z-10 mx-auto flex min-h-[80vh] max-w-7xl items-start pt-28 px-10">
+          <div className="grid w-full grid-cols-1 items-center gap-20 md:grid-cols-2">
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="mb-10 max-w-xl text-lg text-zinc-300 sm:text-xl"
-          >
-            Software Engineer · Creative Technologist
-          </motion.p>
-        </section>
+            {/* LEFT — NAME */}
+            <div className="flex flex-col">
+              <h1 className="mb-6 text-[4.5rem] font-light leading-tight tracking-wide">
+                Ali<br />Tleis
+              </h1>
 
-        {/* ABOUT */}
-        <motion.section
-          id="about"
-          className="relative z-10 mx-auto grid max-w-5xl grid-cols-1 items-center gap-12 px-6 pt-16 pb-24 md:grid-cols-2"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {/* LEFT: IMAGE + NAME */}
-          <div className="flex flex-col items-center gap-6">
-            <div className="relative h-[280px] w-[280px] rounded-2xl bg-gradient-to-br from-indigo-500/30 via-fuchsia-500/20 to-cyan-500/20 p-1">
-              <div className="h-full w-full rounded-xl bg-black/40" />
+              <p className="max-w-md text-lg text-zinc-400">
+                Software Engineer<br />
+                Creative Technologist
+              </p>
+
+              <div className="mt-10 h-px w-24 bg-gradient-to-r from-zinc-500 to-transparent" />
             </div>
 
-            <div className="text-center">
-              <h3 className="text-xl font-semibold">Ali Tleis</h3>
-              <p className="text-sm text-zinc-400">Software Engineer · CS Student</p>
-            </div>
-          </div>
-
-          {/* RIGHT: ABOUT CONTENT */}
-          <div>
-            <h2 className="mb-6 text-3xl font-bold text-indigo-400">About Me</h2>
-
-            <p className="mb-6 text-lg leading-8 text-zinc-300">
-              I’m a computer science student with a strong interest in software engineering,
-              focused on building clean, scalable, and visually polished applications.
-              I enjoy working across the stack and care deeply about structure, motion,
-              and thoughtful user experience.
-            </p>
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              {[
-                "Full-stack development focus",
-                "Design-first engineering mindset",
-                "Strong interest in UI motion & polish",
-                "Experience with real-world projects",
-                "Comfortable working independently or in teams",
-                "Actively preparing for software co-op roles",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-300"
-                >
-                  {item}
+            {/* RIGHT — IMAGE + INTRO */}
+            <div className="flex justify-end">
+              <div className="relative w-full max-w-md rounded-2xl border border-white/10 bg-[#0f1117] p-6">
+                <div className="mb-6 h-64 w-full rounded-xl bg-black/40 flex items-center justify-center text-zinc-500">
+                  Portrait image
                 </div>
-              ))}
+
+                <p className="text-sm leading-7 text-zinc-400">
+                  Computer science student with a strong interest in software engineering,
+                  focused on clean architecture, thoughtful UI, and motion‑driven design.
+                </p>
+              </div>
             </div>
+
           </div>
-        </motion.section>
+        </section>
 
         {/* PROJECTS */}
         <motion.section
           id="projects"
-          className="relative z-10 mx-auto max-w-6xl px-6 py-32"
+          className="relative z-10 mx-auto max-w-6xl px-6 py-20"
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
@@ -116,7 +75,7 @@ export default function Home() {
                 transition={{ type: "spring", stiffness: 200 }}
               >
                 {/* slideshow placeholder */}
-                <div className="mb-4 h-44 w-full rounded-xl bg-gradient-to-br from-indigo-500/30 via-fuchsia-500/20 to-cyan-500/20" />
+                <div className="mb-4 h-44 w-full rounded-xl bg-gradient-to-br from-indigo-500/30 via-zinc-500/20 to-slate-500/20" />
 
                 <h3 className="mb-2 text-xl font-semibold">Project {i}</h3>
 
@@ -138,7 +97,7 @@ export default function Home() {
         {/* TECH STACK */}
         <motion.section
           id="tech-stack"
-          className="relative z-10 mx-auto max-w-5xl px-6 py-32"
+          className="relative z-10 mx-auto max-w-5xl px-6 py-20"
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
@@ -147,7 +106,7 @@ export default function Home() {
           <div className="mb-12 flex items-center gap-4">
             <div className="h-px flex-1 bg-gradient-to-r from-transparent via-indigo-400/40 to-transparent" />
             <h2 className="text-3xl font-bold text-indigo-400">Tech Stack</h2>
-            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-fuchsia-400/40 to-transparent" />
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-zinc-400/40 to-transparent" />
           </div>
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -200,7 +159,7 @@ export default function Home() {
         {/* RESUME */}
         <motion.section
           id="resume"
-          className="relative z-10 mx-auto max-w-5xl px-6 py-28"
+          className="relative z-10 mx-auto max-w-5xl px-6 py-20"
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
@@ -241,10 +200,10 @@ export default function Home() {
         {/* CONTACT */}
         <section
           id="connect"
-          className="relative z-10 mx-auto max-w-6xl px-6 py-36"
+          className="relative z-10 mx-auto max-w-6xl px-6 py-24"
         >
           <div className="mx-auto mb-16 max-w-3xl text-center">
-            <h2 className="mb-6 text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-fuchsia-400 to-cyan-400">
+            <h2 className="mb-6 text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-zinc-400 to-slate-400">
               Contact Me
             </h2>
 
