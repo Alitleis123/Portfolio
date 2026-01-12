@@ -38,11 +38,6 @@ export default function Home() {
                 expressive UI, motion design, and creative tooling.
               </p>
 
-              <p className="mt-6 max-w-lg text-base leading-7 text-zinc-300">
-                Lebanese‑American, 19‑year‑old Computer Science student at Northeastern University (Class of 2028),
-                building clean, high‑performance full‑stack applications with a focus on thoughtful UI and motion.
-              </p>
-
               <div className="mt-10 flex flex-wrap items-center gap-4 pointer-events-auto">
                 <a
                   href="/resume.pdf"
@@ -257,7 +252,7 @@ export default function Home() {
 
         {/* CONTACT */}
         <section
-          id="connect"
+          id="contact"
           className="relative z-10 mx-auto max-w-6xl px-6 py-24"
         >
           <div className="mx-auto mb-16 max-w-3xl text-center">
@@ -332,30 +327,6 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-24 rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/20 px-10 py-14 backdrop-blur-xl">
-            <h3 className="mb-4 text-3xl font-bold text-indigo-400">
-              Open to Opportunities
-            </h3>
-            <p className="mb-6 max-w-3xl text-lg leading-8 text-zinc-300">
-              I’m always interested in internships, collaborations, and creative projects —
-              especially where engineering meets design and motion.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="mailto:tleis.a@northeastern.edu"
-                className="rounded-xl bg-indigo-500/90 px-6 py-3 text-sm font-medium text-white transition hover:bg-indigo-500"
-              >
-                Email Me
-              </a>
-              <a
-                href="https://www.linkedin.com/in/ali-tleis-091800247/"
-                target="_blank"
-                className="rounded-xl border border-white/20 bg-white/5 px-6 py-3 text-sm font-medium text-white/90 backdrop-blur transition hover:bg-white/10"
-              >
-                LinkedIn
-              </a>
-            </div>
-          </div>
         </section>
       </div>
     </>

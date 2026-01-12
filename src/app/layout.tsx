@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body className="relative min-h-screen bg-black text-white antialiased">
         {/* Background */}
         <BackgroundRings />
@@ -29,16 +29,32 @@ export default function RootLayout({
 
             {/* Navigation */}
             <nav className="flex items-center gap-6 text-sm text-white/70">
-              <a href="#about" className="transition hover:text-white">
+              <a
+                href="#about"
+                aria-label="Scroll to About section"
+                className="transition hover:text-white"
+              >
                 About
               </a>
-              <a href="#projects" className="transition hover:text-white">
+              <a
+                href="#projects"
+                aria-label="Scroll to Projects section"
+                className="transition hover:text-white"
+              >
                 Projects
               </a>
-              <a href="#resume" className="transition hover:text-white">
+              <a
+                href="#resume"
+                aria-label="Scroll to Resume section"
+                className="transition hover:text-white"
+              >
                 Resume
               </a>
-              <a href="#contact" className="transition hover:text-white">
+              <a
+                href="#contact"
+                aria-label="Scroll to Contact section"
+                className="transition hover:text-white"
+              >
                 Contact
               </a>
             </nav>
