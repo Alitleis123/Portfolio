@@ -20,7 +20,7 @@ export default function RootLayout({
         <BackgroundRings />
 
         {/* Floating translucent top bar */}
-        <header className="fixed top-4 left-1/2 z-20 w-[92%] max-w-6xl -translate-x-1/2 rounded-2xl border border-white/5 bg-black/15 backdrop-blur-md">
+        <header className="fixed top-4 left-1/2 z-20 w-[92%] max-w-6xl -translate-x-1/2 rounded-2xl border border-white/5 bg-black/20 backdrop-blur-md">
           <div className="flex items-center justify-between px-6 py-3">
             {/* Name */}
             <span className="text-sm font-semibold tracking-wide text-white/90">
@@ -29,13 +29,39 @@ export default function RootLayout({
 
             {/* Navigation */}
             <nav className="flex items-center gap-6 text-sm text-white/70">
-              <a href="#projects" className="hover:text-white transition">
+              <a href="#about" className="transition hover:text-white">
+                About
+              </a>
+              <a href="#projects" className="transition hover:text-white">
                 Projects
               </a>
-              <a href="#contact" className="hover:text-white transition">
+              <a href="#resume" className="transition hover:text-white">
+                Resume
+              </a>
+              <a href="#contact" className="transition hover:text-white">
                 Contact
               </a>
             </nav>
+
+            {/* Socials */}
+            <div className="flex items-center gap-4 text-white/60">
+              <a
+                href="https://github.com/Alitleis123"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition hover:text-white"
+              >
+                GitHub
+              </a>
+              <a
+                href="https://www.linkedin.com/in/ali-tleis-091800247/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition hover:text-white"
+              >
+                LinkedIn
+              </a>
+            </div>
           </div>
         </header>
 

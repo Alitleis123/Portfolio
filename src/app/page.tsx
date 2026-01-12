@@ -33,8 +33,9 @@ export default function Home() {
               </h1>
 
               <p className="max-w-md text-lg text-zinc-400">
-                Software Engineer<br />
-                Creative Technologist
+                Lebanese male, Class of 2028 at Northeastern University.
+                Full‑stack developer with a strong interest in clean architecture,
+                expressive UI, motion design, and creative tooling.
               </p>
 
               <p className="mt-6 max-w-lg text-base leading-7 text-zinc-300">
@@ -51,7 +52,7 @@ export default function Home() {
                 </a>
 
                 <a
-                  href="https://www.linkedin.com/"
+                  href="https://www.linkedin.com/in/ali-tleis-091800247/"
                   target="_blank"
                   className="rounded-xl border border-white/20 bg-white/5 px-6 py-3 text-sm font-medium text-white/90 backdrop-blur transition hover:bg-white/10"
                 >
@@ -67,14 +68,14 @@ export default function Home() {
                 </a>
               </div>
 
-              <div className="mt-10 h-px w-40 bg-gradient-to-r from-zinc-500 to-transparent" />
+              <div className="mt-10 h-px w-64 bg-gradient-to-r from-zinc-500 to-transparent" />
 
               <div className="mt-10 grid gap-4 sm:grid-cols-2">
                 {[
-                  { title: "What I Build", text: "Full‑stack web apps, APIs, and interactive UIs." },
-                  { title: "Tech I Love", text: "React, Next.js, TypeScript, Node, Framer Motion." },
-                  { title: "Interests", text: "Cars, fitness, game development, problem solving." },
-                  { title: "Mindset", text: "Clean architecture, performance, and polish." },
+                  { title: "What I Build", text: "Full‑stack web apps, APIs, and interactive experiences." },
+                  { title: "Tools I Use", text: "Next.js, React, TypeScript, Node, Tailwind, Framer Motion." },
+                  { title: "Creative Work", text: "Video editing with DaVinci Resolve & After Effects." },
+                  { title: "Interests", text: "Cars, fitness, game development, and design systems." },
                 ].map((item) => (
                   <div
                     key={item.title}
@@ -261,7 +262,7 @@ export default function Home() {
         >
           <div className="mx-auto mb-16 max-w-3xl text-center">
             <h2 className="mb-6 text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-zinc-400 to-slate-400">
-              Contact Me
+              Let's Connect
             </h2>
 
             <p className="text-lg leading-8 text-zinc-300">
@@ -283,15 +284,19 @@ export default function Home() {
               <ul className="space-y-4 text-zinc-300">
                 <li>
                   <span className="block text-sm text-zinc-400">Primary Email</span>
-                  your.email@northeastern.edu
+                  tleis.a@northeastern.edu
                 </li>
                 <li>
                   <span className="block text-sm text-zinc-400">Personal Email</span>
-                  yourname@gmail.com
+                  alitleis0731@gmail.com
                 </li>
                 <li>
                   <span className="block text-sm text-zinc-400">Location</span>
                   Boston, MA
+                </li>
+                <li>
+                  <span className="block text-sm text-zinc-400">Phone</span>
+                  347-513-4098
                 </li>
               </ul>
             </div>
@@ -324,6 +329,31 @@ export default function Home() {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+
+          <div className="mt-24 rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/20 px-10 py-14 backdrop-blur-xl">
+            <h3 className="mb-4 text-3xl font-bold text-indigo-400">
+              Open to Opportunities
+            </h3>
+            <p className="mb-6 max-w-3xl text-lg leading-8 text-zinc-300">
+              I’m always interested in internships, collaborations, and creative projects —
+              especially where engineering meets design and motion.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a
+                href="mailto:tleis.a@northeastern.edu"
+                className="rounded-xl bg-indigo-500/90 px-6 py-3 text-sm font-medium text-white transition hover:bg-indigo-500"
+              >
+                Email Me
+              </a>
+              <a
+                href="https://www.linkedin.com/in/ali-tleis-091800247/"
+                target="_blank"
+                className="rounded-xl border border-white/20 bg-white/5 px-6 py-3 text-sm font-medium text-white/90 backdrop-blur transition hover:bg-white/10"
+              >
+                LinkedIn
+              </a>
             </div>
           </div>
         </section>
