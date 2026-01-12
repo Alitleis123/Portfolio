@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const repoName = "ali-portfolio"; // ⚠️ must match your GitHub repo name exactly
+const repoName = "Portfolio"; 
 
 const nextConfig: NextConfig = {
   output: "export",
