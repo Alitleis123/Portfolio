@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -17,6 +17,16 @@ export default function Home() {
     if (window.location.hash) {
       history.replaceState(null, "", window.location.pathname);
     }
+  }, []);
+
+  const [lightbox, setLightbox] = useState<null | { src: string; title: string }>(null);
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightbox(null);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
   return (
     <>
@@ -69,7 +79,7 @@ export default function Home() {
                   { title: "What I Build", text: "Full‑stack web apps, APIs, and interactive experiences." },
                   { title: "Tools I Use", text: "Next.js, React, TypeScript, Node, Tailwind, Framer Motion." },
                   { title: "Creative Work", text: "Video editing with DaVinci Resolve & After Effects." },
-                  { title: "Interests", text: "Cars, fitness, game development, and design systems." },
+                  { title: "Fitness", text: "Consistent lifting and training — I like tracking progress and building discipline over time." },
                 ].map((item) => (
                   <div
                     key={item.title}
@@ -85,8 +95,13 @@ export default function Home() {
             {/* RIGHT — IMAGE + INTRO */}
             <div className="flex justify-end">
               <div className="relative w-full max-w-md rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl p-6">
-                <div className="mb-6 h-64 w-full rounded-xl bg-gradient-to-br from-indigo-500/20 via-zinc-500/10 to-black/40 flex items-center justify-center text-zinc-400">
-                  Portrait Image
+                <div className="relative mb-6 h-64 w-full overflow-hidden rounded-xl">
+                  <img
+                    src="/portrait/36B2F96D-AEC4-4C74-BA04-B7D58EE30BE0.jpg"
+                    alt="Ali Tleis portrait"
+                    className="h-full w-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/20" />
                 </div>
 
                 <p className="text-sm leading-7 text-zinc-400">
@@ -118,29 +133,109 @@ export default function Home() {
             expressive UI, and thoughtful interaction.
           </p>
 
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            {[1, 2, 3, 4].map((i) => (
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-2">
+            {[
+              {
+                title: "Eternal Summary",
+                repo: "https://github.com/Alitleis123/Eternal-Summary",
+                demo: null,
+                tech: [
+                  "Chrome Extension (MV3)",
+                  "JavaScript",
+                  "Node.js",
+                  "Express API",
+                  "LLM API",
+                  "Prompting",
+                ],
+                desc:
+                  "A Chrome extension that uses AI to summarize the webpage you’re currently viewing into quick, readable takeaways.",
+                bullets: [
+                  "Summarizes the active browser tab",
+                  "Turns long pages into clear bullet takeaways",
+                  "Built as a lightweight Chrome extension",
+                ],
+                image: "/projects/EternalSummary.png",
+              },
+              {
+                title: "CalorieCalculator",
+                repo: "https://github.com/Alitleis123/CalorieCalculator",
+                demo: "https://alitleis123.github.io/CalorieCalculator/",
+                tech: ["React", "JavaScript", "HTML", "CSS"],
+                desc:
+                  "A calculator that estimates your maintenance calories and helps set goals to gain or lose weight based on your stats.",
+                bullets: [
+                  "Maintenance + gain/loss calorie targets",
+                  "BMI calculation with a simple BMI scale",
+                  "Inputs like height/weight to personalize results",
+                ],
+                image: "/projects/CalorieCalculator.png",
+              },
+            ].map((project) => (
               <motion.div
-                key={i}
+                key={project.title}
                 className="rounded-2xl border border-white/15 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-6 backdrop-blur-xl"
                 whileHover={{ y: -8, boxShadow: "0 0 40px rgba(99,102,241,0.25)" }}
                 transition={{ type: "spring", stiffness: 200 }}
               >
-                {/* slideshow placeholder */}
-                <div className="mb-4 h-44 w-full rounded-xl bg-gradient-to-br from-indigo-500/30 via-zinc-500/20 to-slate-500/20" />
+                <button
+                  type="button"
+                  onClick={() => setLightbox({ src: project.image, title: project.title })}
+                  className="group relative mb-4 h-44 w-full overflow-hidden rounded-xl border border-white/10 text-left"
+                  aria-label={`Expand ${project.title} preview`}
+                >
+                  <img
+                    src={project.image}
+                    alt={`${project.title} preview`}
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                  />
+                  <div className="absolute inset-0 bg-black/25 transition group-hover:bg-black/15" />
+                  <div className="pointer-events-none absolute bottom-3 right-3 rounded-lg border border-white/15 bg-black/40 px-3 py-1 text-xs text-white/80 backdrop-blur">
+                    Click to expand
+                  </div>
+                </button>
 
-                <h3 className="mb-2 text-xl font-semibold">Project {i}</h3>
+                <h3 className="mb-2 text-xl font-semibold">{project.title}</h3>
 
-                <p className="mb-4 text-sm text-zinc-300">
-                  A longer description explaining what this project does, the problem it solves,
-                  and why it’s interesting.
-                </p>
+                <p className="mb-4 text-sm text-zinc-300">{project.desc}</p>
+
+                <div className="mb-5 flex flex-wrap gap-2">
+                  {project.tech.map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-lg border border-white/10 bg-black/30 px-3 py-1 text-xs text-white/80"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
 
                 <ul className="list-disc space-y-1 pl-4 text-sm text-zinc-400">
-                  <li>Main feature or idea</li>
-                  <li>How the user interacts with it</li>
-                  <li>What makes it unique</li>
+                  {project.bullets.map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
                 </ul>
+
+                <div className="mt-6 flex flex-wrap gap-3">
+                  {project.demo ? (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center rounded-xl bg-indigo-500/90 px-5 py-3 text-sm font-medium text-white transition hover:bg-indigo-500"
+                    >
+                      Live Demo
+                    </a>
+                  ) : null}
+
+                  <a
+                    href={project.repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10"
+                  >
+                    View on GitHub
+                  </a>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -417,6 +512,39 @@ export default function Home() {
           </div>
 
         </section>
+        {lightbox ? (
+          <div
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 p-6"
+            onClick={() => setLightbox(null)}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${lightbox.title} expanded preview`}
+          >
+            <div
+              className="relative w-full max-w-5xl overflow-hidden rounded-2xl border border-white/15 bg-black/60 backdrop-blur"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between gap-4 border-b border-white/10 px-5 py-4">
+                <div className="text-sm font-medium text-white/90">{lightbox.title}</div>
+                <button
+                  type="button"
+                  onClick={() => setLightbox(null)}
+                  className="rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-xs text-white/80 transition hover:bg-white/10"
+                >
+                  Close (Esc)
+                </button>
+              </div>
+
+              <div className="max-h-[78vh] overflow-auto p-4">
+                <img
+                  src={lightbox.src}
+                  alt={`${lightbox.title} expanded preview`}
+                  className="h-auto w-full rounded-xl border border-white/10"
+                />
+              </div>
+            </div>
+          </div>
+        ) : null}
       </div>
     </>
   );

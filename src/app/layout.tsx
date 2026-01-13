@@ -36,13 +36,24 @@ export default function RootLayout({
 
               <span className="mx-1 h-4 w-px bg-white/10" />
 
-              <a
-                href="/resume/resume.pdf"
-                download
-                className="rounded-full bg-white/10 px-4 py-1.5 text-sm text-white/90 transition hover:bg-white/20"
-              >
-                Download Resume
-              </a>
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://github.com/Alitleis123"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full bg-white/10 px-4 py-1.5 text-sm text-white/90 transition hover:bg-white/20"
+                >
+                  GitHub
+                </a>
+
+                <a
+                  href="/resume/resume.pdf"
+                  download
+                  className="rounded-full bg-white/10 px-4 py-1.5 text-sm text-white/90 transition hover:bg-white/20"
+                >
+                  Download Resume
+                </a>
+              </div>
             </nav>
           </div>
         </header>
