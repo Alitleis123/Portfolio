@@ -37,7 +37,7 @@ export default function RootLayout({
               <span className="mx-1 h-4 w-px bg-white/10" />
 
               <a
-                href="/Ali_Tleis_Resume.pdf"
+                href="/resume/resume.pdf"
                 download
                 className="rounded-full bg-white/10 px-4 py-1.5 text-sm text-white/90 transition hover:bg-white/20"
               >

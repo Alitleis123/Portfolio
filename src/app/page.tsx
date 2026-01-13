@@ -165,27 +165,59 @@ export default function Home() {
             {[
               {
                 title: "Frontend",
-                items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+                items: [
+                  "React",
+                  "Next.js",
+                  "TypeScript",
+                  "Tailwind CSS",
+                  "Framer Motion",
+                ],
               },
               {
                 title: "Backend",
-                items: ["Node.js", "Express", "REST APIs", "MVC Architecture"],
+                items: [
+                  "Node.js",
+                  "Express.js",
+                  "REST APIs",
+                  "JWT Authentication",
+                ],
               },
               {
                 title: "Languages",
-                items: ["Java", "Kotlin", "C#", "C++", "Python", "JavaScript", "TypeScript"],
+                items: [
+                  "Java",
+                  "Kotlin",
+                  "C#",
+                  "C++",
+                  "Python",
+                  "JavaScript",
+                  "TypeScript",
+                ],
+              },
+              {
+                title: "AI Systems",
+                items: [
+                  "OpenAI API",
+                  "Prompt Engineering",
+                  "AI Summarization Pipelines",
+                ],
+              },
+              {
+                title: "Databases",
+                items: [
+                  "PostgreSQL",
+                  "Relational Data Modeling",
+                ],
               },
               {
                 title: "Tools",
-                items: ["Git", "GitHub", "VS Code", "npm"],
-              },
-              {
-                title: "Design",
-                items: ["UI/UX Design", "Motion Design", "Responsive Layouts"],
-              },
-              {
-                title: "Foundations",
-                items: ["Data Structures", "Object-Oriented Design"],
+                items: [
+                  "Git / GitHub",
+                  "Docker",
+                  "Linux",
+                  "JWT",
+                  "Heroku"
+                ],
               },
             ].map((group) => (
               <div
@@ -195,12 +227,14 @@ export default function Home() {
                 <h3 className="mb-4 text-lg font-semibold">{group.title}</h3>
                 <div className="flex flex-wrap gap-2">
                   {group.items.map((item) => (
-                    <span
+                    <div
                       key={item}
-                      className="rounded-full border border-white/10 bg-black/30 px-3 py-1 text-sm text-zinc-300"
+                      className="rounded-xl border border-white/10 bg-black/30 px-4 py-3"
                     >
-                      {item}
-                    </span>
+                      <div className="text-sm font-semibold text-white">
+                        {item}
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -236,7 +270,7 @@ export default function Home() {
 
               <div className="flex gap-3">
                 <a
-                  href="/resume/Ali%20Tleis%20resume.pdf"
+                  href="/resume/resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10"
@@ -245,7 +279,7 @@ export default function Home() {
                 </a>
 
                 <a
-                  href="/resume/Ali%20Tleis%20resume.pdf"
+                  href="/resume/resume.pdf"
                   download
                   className="inline-flex items-center justify-center rounded-xl bg-indigo-500/90 px-6 py-3 text-sm font-medium text-white transition hover:bg-indigo-500"
                 >
@@ -256,7 +290,7 @@ export default function Home() {
 
             <div className="relative h-[80vh] w-full overflow-hidden rounded-xl border border-white/10 bg-black/40">
               <iframe
-                src="/resume/Ali%20Tleis%20resume.pdf"
+                src="/resume/resume.pdf"
                 className="h-full w-full"
                 title="Ali Tleis Resume"
               />
