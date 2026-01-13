@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 
+
+//test
 export default function BackgroundRings() {
   return (
     <motion.div
