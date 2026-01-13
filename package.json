@@ -2,6 +2,7 @@
   "name": "ali-portfolio",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://alitleis123.github.io/Portfolio",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
