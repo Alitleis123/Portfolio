@@ -3,9 +3,9 @@ import "./globals.css";
 import BackgroundRings from "./components/BackgroundRings";
 
 export const metadata: Metadata = {
-  title: "Ali Tleis · Software Engineer",
+  title: "Ali Tleis · Portfolio",
   description:
-    "Personal portfolio of Ali Tleis — software engineer and creative technologist.",
+    "Personal portfolio of Ali Tleis — Lebanese-American developer based in Boston.",
 };
 
 export default function RootLayout({
@@ -29,55 +29,21 @@ export default function RootLayout({
 
             {/* Navigation */}
             <nav className="flex items-center gap-6 text-sm text-white/70">
+              <a href="#about" className="nav-link transition hover:text-white">About</a>
+              <a href="#projects" className="nav-link transition hover:text-white">Projects</a>
+              <a href="#resume" className="nav-link transition hover:text-white">Resume</a>
+              <a href="#contact" className="nav-link transition hover:text-white">Contact</a>
+
+              <span className="mx-1 h-4 w-px bg-white/10" />
+
               <a
-                href="#about"
-                aria-label="Scroll to About section"
-                className="transition hover:text-white"
+                href="/Ali_Tleis_Resume.pdf"
+                download
+                className="rounded-full bg-white/10 px-4 py-1.5 text-sm text-white/90 transition hover:bg-white/20"
               >
-                About
-              </a>
-              <a
-                href="#projects"
-                aria-label="Scroll to Projects section"
-                className="transition hover:text-white"
-              >
-                Projects
-              </a>
-              <a
-                href="#resume"
-                aria-label="Scroll to Resume section"
-                className="transition hover:text-white"
-              >
-                Resume
-              </a>
-              <a
-                href="#contact"
-                aria-label="Scroll to Contact section"
-                className="transition hover:text-white"
-              >
-                Contact
+                Download Resume
               </a>
             </nav>
-
-            {/* Socials */}
-            <div className="flex items-center gap-4 text-white/60">
-              <a
-                href="https://github.com/Alitleis123"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition hover:text-white"
-              >
-                GitHub
-              </a>
-              <a
-                href="https://www.linkedin.com/in/ali-tleis-091800247/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition hover:text-white"
-              >
-                LinkedIn
-              </a>
-            </div>
           </div>
         </header>
 

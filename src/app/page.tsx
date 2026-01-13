@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import BackgroundRings from "./components/BackgroundRings";
+import { useEffect } from "react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -13,17 +13,19 @@ const fadeUp: Variants = {
 };
 
 export default function Home() {
+  useEffect(() => {
+    if (window.location.hash) {
+      history.replaceState(null, "", window.location.pathname);
+    }
+  }, []);
   return (
     <>
       <div className="relative min-h-screen overflow-hidden text-white">
-        <BackgroundRings />
 
-        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-          <div className="absolute -right-40 top-1/2 h-[700px] w-[700px] -translate-y-1/2 rounded-full bg-gradient-to-br from-indigo-500/20 via-sky-500/10 to-transparent blur-[120px]" />
-          <div className="absolute -left-40 top-1/3 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-gradient-to-br from-slate-700/30 via-slate-800/20 to-transparent blur-[140px]" />
-        </div>
-
-        <section className="relative z-10 mx-auto flex min-h-[80vh] max-w-7xl items-start pt-28 px-10">
+        <section
+          id="about"
+          className="relative z-10 mx-auto flex min-h-[80vh] max-w-7xl items-start pt-28 px-10"
+        >
           <div className="grid w-full grid-cols-1 items-center gap-20 md:grid-cols-2">
 
             {/* LEFT — NAME */}
@@ -31,21 +33,18 @@ export default function Home() {
               <h1 className="mb-6 text-[4.5rem] font-light leading-tight tracking-wide">
                 Ali<br />Tleis
               </h1>
+              <div className="mb-5 whitespace-nowrap text-xs font-medium uppercase tracking-[0.25em] text-zinc-500">
+                Lebanese‑American <span className="mx-2 opacity-40">•</span>
+                Boston, MA <span className="mx-2 opacity-40">•</span>
+                Northeastern ’28
+              </div>
 
               <p className="max-w-md text-lg text-zinc-400">
-                Lebanese male, Class of 2028 at Northeastern University.
-                Full‑stack developer with a strong interest in clean architecture,
-                expressive UI, motion design, and creative tooling.
+                Computer Science student focused on building clean, scalable applications,
+                with a strong interest in expressive UI, motion design, and creative tooling.
               </p>
 
               <div className="mt-10 flex flex-wrap items-center gap-4 pointer-events-auto">
-                <a
-                  href="/resume.pdf"
-                  className="rounded-xl bg-indigo-500/90 px-6 py-3 text-sm font-medium text-white transition hover:bg-indigo-500"
-                >
-                  Download Resume
-                </a>
-
                 <a
                   href="https://www.linkedin.com/in/ali-tleis-091800247/"
                   target="_blank"
@@ -91,8 +90,8 @@ export default function Home() {
                 </div>
 
                 <p className="text-sm leading-7 text-zinc-400">
-                  Computer science student with a strong interest in software engineering,
-                  focused on clean architecture, thoughtful UI, and motion‑driven design.
+                  I enjoy building thoughtful software experiences that combine solid
+                  engineering with clean visual design, motion, and usability.
                 </p>
                 <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent" />
               </div>
@@ -170,11 +169,11 @@ export default function Home() {
               },
               {
                 title: "Backend",
-                items: ["Node.js", "Express", "REST APIs"],
+                items: ["Node.js", "Express", "REST APIs", "MVC Architecture"],
               },
               {
                 title: "Languages",
-                items: ["Java", "Python", "C++", "JavaScript"],
+                items: ["Java", "Kotlin", "C#", "C++", "Python", "JavaScript", "TypeScript"],
               },
               {
                 title: "Tools",
@@ -231,21 +230,36 @@ export default function Home() {
               <div>
                 <h3 className="text-xl font-semibold">Ali Tleis — Resume</h3>
                 <p className="text-sm text-zinc-400">
-                  Software Engineering · Computer Science
+                  Computer Science · Software Engineering
                 </p>
               </div>
 
-              <a
-                href="/resume.pdf"
-                className="inline-flex items-center justify-center rounded-xl bg-indigo-500/90 px-6 py-3 text-sm font-medium text-white transition hover:bg-indigo-500"
-              >
-                Download PDF
-              </a>
+              <div className="flex gap-3">
+                <a
+                  href="/resume/Ali%20Tleis%20resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10"
+                >
+                  Open in New Tab
+                </a>
+
+                <a
+                  href="/resume/Ali%20Tleis%20resume.pdf"
+                  download
+                  className="inline-flex items-center justify-center rounded-xl bg-indigo-500/90 px-6 py-3 text-sm font-medium text-white transition hover:bg-indigo-500"
+                >
+                  Download PDF
+                </a>
+              </div>
             </div>
 
-            {/* Resume preview placeholder */}
-            <div className="h-[480px] w-full rounded-xl bg-black/40 flex items-center justify-center text-zinc-400">
-              Resume preview placeholder (PDF iframe goes here)
+            <div className="relative h-[80vh] w-full overflow-hidden rounded-xl border border-white/10 bg-black/40">
+              <iframe
+                src="/resume/Ali%20Tleis%20resume.pdf"
+                className="h-full w-full"
+                title="Ali Tleis Resume"
+              />
             </div>
           </div>
         </motion.section>
@@ -276,24 +290,45 @@ export default function Home() {
             <div className="rounded-2xl border border-white/15 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-8 backdrop-blur-xl">
               <h3 className="mb-6 text-xl font-semibold">Get in Touch</h3>
 
-              <ul className="space-y-4 text-zinc-300">
-                <li>
-                  <span className="block text-sm text-zinc-400">Primary Email</span>
-                  tleis.a@northeastern.edu
-                </li>
-                <li>
-                  <span className="block text-sm text-zinc-400">Personal Email</span>
-                  alitleis0731@gmail.com
-                </li>
-                <li>
-                  <span className="block text-sm text-zinc-400">Location</span>
-                  Boston, MA
-                </li>
-                <li>
-                  <span className="block text-sm text-zinc-400">Phone</span>
-                  347-513-4098
-                </li>
-              </ul>
+              <div className="space-y-6">
+                <div>
+                  <span className="block text-xs uppercase tracking-widest text-zinc-400">
+                    School Email
+                  </span>
+                  <p className="mt-1 text-lg font-medium text-white">
+                    tleis.a@northeastern.edu
+                  </p>
+                </div>
+
+                <div>
+                  <span className="block text-xs uppercase tracking-widest text-zinc-400">
+                    Personal Email
+                  </span>
+                  <p className="mt-1 text-lg font-medium text-white">
+                    alitleis0731@gmail.com
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-6 pt-4">
+                  <div>
+                    <span className="block text-xs uppercase tracking-widest text-zinc-400">
+                      Location
+                    </span>
+                    <p className="mt-1 text-base text-zinc-300">
+                      Boston, MA
+                    </p>
+                  </div>
+
+                  <div>
+                    <span className="block text-xs uppercase tracking-widest text-zinc-400">
+                      Phone
+                    </span>
+                    <p className="mt-1 text-base text-zinc-300">
+                      347‑513‑4098
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* LINKS */}
@@ -305,24 +340,44 @@ export default function Home() {
                   {
                     title: "GitHub",
                     desc: "Projects, experiments, and source code",
+                    href: "https://github.com/Alitleis123",
+                    external: true,
                   },
                   {
                     title: "LinkedIn",
                     desc: "Professional background and updates",
+                    href: "https://www.linkedin.com/in/ali-tleis-091800247/",
+                    external: true,
                   },
                   {
                     title: "Portfolio Projects",
                     desc: "Selected featured work",
+                    href: "#projects",
+                    external: false,
                   },
-                ].map((item) => (
-                  <div
-                    key={item.title}
-                    className="rounded-xl border border-white/10 bg-black/30 px-5 py-4 transition hover:bg-white/10"
-                  >
-                    <div className="font-medium">{item.title}</div>
-                    <div className="text-sm text-zinc-400">{item.desc}</div>
-                  </div>
-                ))}
+                ].map((item) =>
+                  item.external ? (
+                    <a
+                      key={item.title}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block rounded-xl border border-white/10 bg-black/30 px-5 py-4 transition hover:bg-white/10"
+                    >
+                      <div className="font-medium">{item.title}</div>
+                      <div className="text-sm text-zinc-400">{item.desc}</div>
+                    </a>
+                  ) : (
+                    <a
+                      key={item.title}
+                      href={item.href}
+                      className="block rounded-xl border border-white/10 bg-black/30 px-5 py-4 transition hover:bg-white/10"
+                    >
+                      <div className="font-medium">{item.title}</div>
+                      <div className="text-sm text-zinc-400">{item.desc}</div>
+                    </a>
+                  )
+                )}
               </div>
             </div>
           </div>

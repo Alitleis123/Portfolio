@@ -5,15 +5,7 @@ import { Ring } from "@react-three/drei";
 import { useEffect, useState } from "react";
 
 function Halo() {
-  return (
-    <Ring args={[3.5, 4, 64]} rotation={[Math.PI / 2, 0, 0]}>
-      <meshBasicMaterial
-        color="#8faaff"
-        transparent
-        opacity={0.15}
-      />
-    </Ring>
-  );
+  return null;
 }
 
 export default function CanvasBackground() {
@@ -34,7 +26,6 @@ export default function CanvasBackground() {
         camera={{ position: [0, 0, 8], fov: 50 }}
         gl={{ antialias: true, alpha: true, powerPreference: "low-power" }}
       >
-        <ambientLight intensity={0.4} />
         <Halo />
       </Canvas>
     </div>
