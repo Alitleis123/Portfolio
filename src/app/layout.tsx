@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import BackgroundRings from "./components/BackgroundRings";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const withBasePath = (path: string) => `${basePath}${path}`;
+
 export const metadata: Metadata = {
   title: "Ali Tleis · Portfolio",
   description:
@@ -47,7 +50,7 @@ export default function RootLayout({
                 </a>
 
                 <a
-                  href="/resume/resume.pdf"
+                  href={withBasePath("/resume/resume.pdf")}
                   download
                   className="rounded-full bg-white/10 px-4 py-1.5 text-sm text-white/90 transition hover:bg-white/20"
                 >

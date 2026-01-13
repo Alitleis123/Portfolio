@@ -13,13 +13,16 @@ const fadeUp: Variants = {
 };
 
 export default function Home() {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+  const withBasePath = (path: string) => `${basePath}${path}`;
+
   useEffect(() => {
     if (window.location.hash) {
       history.replaceState(null, "", window.location.pathname);
     }
   }, []);
 
-  const [lightbox, setLightbox] = useState<null | { src: string; title: string }>(null);
+  const [lightbox, setLightbox] = useState<null | { images: string[]; title: string }>(null);
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -97,7 +100,7 @@ export default function Home() {
               <div className="relative w-full max-w-md rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl p-6">
                 <div className="relative mb-6 h-64 w-full overflow-hidden rounded-xl">
                   <img
-                    src="/portrait/36B2F96D-AEC4-4C74-BA04-B7D58EE30BE0.jpg"
+                    src={withBasePath("/portrait/36B2F96D-AEC4-4C74-BA04-B7D58EE30BE0.jpg")}
                     alt="Ali Tleis portrait"
                     className="h-full w-full object-cover"
                   />
@@ -133,12 +136,33 @@ export default function Home() {
             expressive UI, and thoughtful interaction.
           </p>
 
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-2">
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {[
+              {
+                title: "Top Choice Realty",
+                repo: undefined,
+                demo: undefined,
+                showDemo: true,
+                tech: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+                desc:
+                  "Placeholder for a real estate website project. Details and visuals coming soon.",
+                bullets: [
+                  "Property listings and featured homes",
+                  "Clean, fast browsing experience",
+                  "Built with a modern UI focus",
+                ],
+                image: withBasePath("/file.svg"),
+                images: [
+                  withBasePath("/file.svg"),
+                  withBasePath("/window.svg"),
+                  withBasePath("/globe.svg"),
+                ],
+              },
               {
                 title: "Eternal Summary",
                 repo: "https://github.com/Alitleis123/Eternal-Summary",
                 demo: null,
+                showDemo: false,
                 tech: [
                   "Chrome Extension (MV3)",
                   "JavaScript",
@@ -154,7 +178,8 @@ export default function Home() {
                   "Turns long pages into clear bullet takeaways",
                   "Built as a lightweight Chrome extension",
                 ],
-                image: "/projects/EternalSummary.png",
+                image: withBasePath("/projects/EternalSummary.png"),
+                images: [withBasePath("/projects/EternalSummary.png")],
               },
               {
                 title: "CalorieCalculator",
@@ -168,7 +193,8 @@ export default function Home() {
                   "BMI calculation with a simple BMI scale",
                   "Inputs like height/weight to personalize results",
                 ],
-                image: "/projects/CalorieCalculator.png",
+                image: withBasePath("/projects/CalorieCalculator.png"),
+                images: [withBasePath("/projects/CalorieCalculator.png")],
               },
             ].map((project) => (
               <motion.div
@@ -179,7 +205,12 @@ export default function Home() {
               >
                 <button
                   type="button"
-                  onClick={() => setLightbox({ src: project.image, title: project.title })}
+                  onClick={() =>
+                    setLightbox({
+                      images: project.images ?? [project.image],
+                      title: project.title,
+                    })
+                  }
                   className="group relative mb-4 h-44 w-full overflow-hidden rounded-xl border border-white/10 text-left"
                   aria-label={`Expand ${project.title} preview`}
                 >
@@ -225,16 +256,26 @@ export default function Home() {
                     >
                       Live Demo
                     </a>
+                  ) : project.showDemo ? (
+                    <span className="inline-flex cursor-not-allowed items-center justify-center rounded-xl bg-indigo-500/40 px-5 py-3 text-sm font-medium text-white/60">
+                      Live Demo
+                    </span>
                   ) : null}
 
-                  <a
-                    href={project.repo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10"
-                  >
-                    View on GitHub
-                  </a>
+                  {project.repo ? (
+                    <a
+                      href={project.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10"
+                    >
+                      View on GitHub
+                    </a>
+                  ) : (
+                    <span className="inline-flex cursor-not-allowed items-center justify-center rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white/50">
+                      View on GitHub
+                    </span>
+                  )}
                 </div>
               </motion.div>
             ))}
@@ -365,7 +406,7 @@ export default function Home() {
 
               <div className="flex gap-3">
                 <a
-                  href="/resume/resume.pdf"
+                  href={withBasePath("/resume/resume.pdf")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10"
@@ -374,7 +415,7 @@ export default function Home() {
                 </a>
 
                 <a
-                  href="/resume/resume.pdf"
+                  href={withBasePath("/resume/resume.pdf")}
                   download
                   className="inline-flex items-center justify-center rounded-xl bg-indigo-500/90 px-6 py-3 text-sm font-medium text-white transition hover:bg-indigo-500"
                 >
@@ -385,7 +426,7 @@ export default function Home() {
 
             <div className="relative h-[80vh] w-full overflow-hidden rounded-xl border border-white/10 bg-black/40">
               <iframe
-                src="/resume/resume.pdf"
+                src={withBasePath("/resume/resume.pdf")}
                 className="h-full w-full"
                 title="Ali Tleis Resume"
               />
@@ -535,12 +576,15 @@ export default function Home() {
                 </button>
               </div>
 
-              <div className="max-h-[78vh] overflow-auto p-4">
-                <img
-                  src={lightbox.src}
-                  alt={`${lightbox.title} expanded preview`}
-                  className="h-auto w-full rounded-xl border border-white/10"
-                />
+              <div className="max-h-[78vh] space-y-4 overflow-auto p-4">
+                {lightbox.images.map((src, index) => (
+                  <img
+                    key={`${src}-${index}`}
+                    src={src}
+                    alt={`${lightbox.title} preview ${index + 1}`}
+                    className="h-auto w-full rounded-xl border border-white/10"
+                  />
+                ))}
               </div>
             </div>
           </div>
