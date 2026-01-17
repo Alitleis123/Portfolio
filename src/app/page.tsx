@@ -398,7 +398,7 @@ export default function Home() {
         {/* TIMELINE */}
         <section
           id="timeline"
-          className="relative z-10 mx-auto max-w-6xl px-6 pb-16 pt-6"
+          className="relative z-10 mx-auto max-w-6xl px-6 pb-24 pt-10"
         >
           <div className="mb-10 text-center">
             <h2 className="section-title text-3xl font-bold text-violet-300">Timeline</h2>
@@ -442,10 +442,16 @@ export default function Home() {
                 },
               ].map((item, index) => {
                 const isTop = index % 2 === 0;
+                const cardShift =
+                  index === 0
+                    ? "translate-x-[-40%]"
+                    : index === 3
+                      ? "translate-x-[-60%]"
+                      : "-translate-x-1/2";
                 return (
-                  <div key={`${item.year}-${item.title}`} className="relative min-h-[300px]">
+                  <div key={`${item.year}-${item.title}`} className="relative min-h-[320px]">
                     <div
-                      className={`absolute left-1/2 -translate-x-1/2 ${isTop ? "top-[calc(50%-150px)]" : "top-[calc(50%+70px)]"} w-[220px] rounded-2xl border border-white/10 bg-black/70 p-4 shadow-[0_12px_30px_rgba(0,0,0,0.35)]`}
+                      className={`absolute left-1/2 ${cardShift} ${isTop ? "top-[calc(50%-175px)]" : "top-[calc(50%+95px)]"} w-[230px] rounded-2xl border border-white/10 bg-black/70 p-4 shadow-[0_12px_30px_rgba(0,0,0,0.35)]`}
                     >
                       <div className="text-sm font-semibold text-white">{item.title}</div>
                       <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-violet-200/70">
@@ -454,11 +460,11 @@ export default function Home() {
                       <p className="mt-3 text-xs text-zinc-300">{item.desc}</p>
                     </div>
                     <div
-                      className={`absolute left-1/2 -translate-x-1/2 ${isTop ? "top-[calc(50%-52px)]" : "top-[calc(50%+8px)]"} h-12 w-px`}
+                      className={`absolute left-1/2 -translate-x-1/2 ${isTop ? "top-[calc(50%-66px)]" : "top-[calc(50%+12px)]"} h-16 w-px`}
                       style={{ backgroundColor: item.accent }}
                     />
                     <div
-                      className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[3px] bg-[#070910]"
+                      className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[3px] bg-[#070910]"
                       style={{ borderColor: item.accent }}
                     >
                       <span
@@ -533,7 +539,7 @@ export default function Home() {
         {/* RESUME */}
         <motion.section
           id="resume"
-          className="relative z-10 mx-auto max-w-5xl px-6 py-20"
+          className="relative z-10 mx-auto max-w-5xl px-6 py-24"
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
