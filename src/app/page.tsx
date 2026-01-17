@@ -286,7 +286,7 @@ export default function Home() {
         {/* TECH STACK */}
         <motion.section
           id="tech-stack"
-          className="relative z-10 mx-auto max-w-5xl px-6 py-20"
+          className="relative z-10 mx-auto max-w-5xl px-6 pb-24 pt-20"
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
@@ -451,7 +451,7 @@ export default function Home() {
                 return (
                   <div key={`${item.year}-${item.title}`} className="relative min-h-[320px]">
                     <div
-                      className={`absolute left-1/2 ${cardShift} ${isTop ? "top-[calc(50%-175px)]" : "top-[calc(50%+95px)]"} w-[230px] rounded-2xl border border-white/10 bg-black/70 p-4 shadow-[0_12px_30px_rgba(0,0,0,0.35)]`}
+                      className={`absolute left-1/2 ${cardShift} ${isTop ? "top-[calc(50%-185px)]" : "top-[calc(50%+95px)]"} w-[230px] rounded-2xl border border-white/10 bg-black/70 p-4 shadow-[0_12px_30px_rgba(0,0,0,0.35)]`}
                     >
                       <div className="text-sm font-semibold text-white">{item.title}</div>
                       <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-violet-200/70">
@@ -603,7 +603,7 @@ export default function Home() {
               cares about both performance and experience.”
             </p>
             <p className="mt-3 text-xs uppercase tracking-[0.2em] text-zinc-500">
-              Mentor / Professor
+              Robert DeFalco · CEO
             </p>
           </div>
 
