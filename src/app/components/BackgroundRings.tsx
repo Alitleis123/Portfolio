@@ -23,14 +23,17 @@ export default function BackgroundRings() {
         <div className="ambient-gradient" />
       </motion.div>
 
+      <div className="edge-lights" />
+      <div className="noise-overlay" />
+
       <motion.div
         className="absolute -left-40 top-32 h-[520px] w-[520px] rounded-full bg-sky-500/10 blur-[120px]"
-        animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
+        animate={{ x: [0, 40, 0], y: [0, -30, 0], scale: [1, 1.08, 1] }}
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         className="absolute right-[-180px] top-1/3 h-[560px] w-[560px] rounded-full bg-indigo-500/10 blur-[140px]"
-        animate={{ x: [0, -30, 0], y: [0, 25, 0] }}
+        animate={{ x: [0, -30, 0], y: [0, 25, 0], scale: [1, 1.07, 1] }}
         transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
       />
 

@@ -128,7 +128,7 @@ export default function Home() {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-zinc-300 to-slate-400">
+          <h2 className="section-title mb-4 text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-zinc-300 to-slate-400">
             Selected Projects
           </h2>
 
@@ -294,7 +294,7 @@ export default function Home() {
         >
           <div className="mb-12 flex items-center gap-4">
             <div className="h-px flex-1 bg-gradient-to-r from-transparent via-indigo-400/40 to-transparent" />
-            <h2 className="text-3xl font-bold text-indigo-400">Tech Stack</h2>
+            <h2 className="section-title text-3xl font-bold text-indigo-400">Tech Stack</h2>
             <div className="h-px flex-1 bg-gradient-to-r from-transparent via-zinc-400/40 to-transparent" />
           </div>
 
@@ -384,7 +384,7 @@ export default function Home() {
           className="relative z-10 mx-auto max-w-6xl px-6 pb-24 pt-6"
         >
           <div className="mb-10 text-center">
-            <h2 className="text-4xl font-semibold text-violet-300">Terminal</h2>
+            <h2 className="section-title text-4xl font-semibold text-violet-300">Terminal</h2>
             <p className="mt-3 text-sm text-zinc-400">
               Type commands to explore my profile
             </p>
@@ -405,7 +405,7 @@ export default function Home() {
           viewport={{ once: true }}
         >
           <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-indigo-400">Resume</h2>
+            <h2 className="section-title mb-4 text-3xl font-bold text-indigo-400">Resume</h2>
             <p className="mx-auto max-w-2xl text-lg text-zinc-300">
               A quick overview of my experience and background.  
               You can preview my resume below or download the full PDF.
@@ -457,7 +457,7 @@ export default function Home() {
           className="relative z-10 mx-auto max-w-6xl px-6 py-24"
         >
           <div className="mx-auto mb-16 max-w-3xl text-center">
-            <h2 className="mb-6 text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-zinc-400 to-slate-400">
+            <h2 className="section-title mb-6 text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-zinc-400 to-slate-400">
               Let's Connect
             </h2>
 

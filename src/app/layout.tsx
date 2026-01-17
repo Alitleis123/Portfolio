@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ScrollToTopOnLoad from "./components/ScrollToTopOnLoad";
 import "./globals.css";
 import BackgroundRings from "./components/BackgroundRings";
 
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className="relative min-h-screen bg-black text-white antialiased">
+        <ScrollToTopOnLoad />
         {/* Background */}
         <BackgroundRings />
 
