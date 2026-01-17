@@ -38,6 +38,25 @@ body {
   overflow-x: hidden;
 }
 
+.ambient-gradient {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(60% 60% at 20% 20%, rgba(56, 189, 248, 0.08), transparent 60%),
+    radial-gradient(50% 50% at 80% 30%, rgba(99, 102, 241, 0.12), transparent 55%),
+    radial-gradient(45% 45% at 50% 80%, rgba(20, 184, 166, 0.06), transparent 60%);
+  filter: blur(10px);
+}
+
+.edge-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(80% 80% at 50% 50%, transparent 55%, rgba(5, 7, 12, 0.55) 100%),
+    linear-gradient(90deg, rgba(10, 12, 18, 0.6) 0%, transparent 18%, transparent 82%, rgba(10, 12, 18, 0.6) 100%);
+  pointer-events: none;
+}
+
 /* Subtle selection styling */
 ::selection {
   background: rgba(79, 70, 229, 0.25);

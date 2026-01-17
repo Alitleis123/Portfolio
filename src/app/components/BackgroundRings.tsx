@@ -34,8 +34,6 @@ export default function BackgroundRings() {
         transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="edge-vignette" />
-
       <svg
         className="absolute left-1/2 top-1/2 h-[1200px] w-[1200px] -translate-x-1/2 -translate-y-1/2 opacity-40"
         viewBox="0 0 1000 1000"
