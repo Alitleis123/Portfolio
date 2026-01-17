@@ -2,6 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import { useEffect, useState } from "react";
+import TerminalGuide from "./components/TerminalGuide";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -140,7 +141,7 @@ export default function Home() {
             {[
               {
                 title: "Top Choice Realty",
-                repo: undefined,
+                repo: "https://github.com/alitleis123/topchoicerealty",
                 demo: undefined,
                 showDemo: true,
                 tech: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
@@ -377,6 +378,22 @@ export default function Home() {
             ))}
           </div>
         </motion.section>
+
+        <section
+          id="terminal"
+          className="relative z-10 mx-auto max-w-6xl px-6 pb-24 pt-6"
+        >
+          <div className="mb-10 text-center">
+            <h2 className="text-4xl font-semibold text-violet-300">Terminal</h2>
+            <p className="mt-3 text-sm text-zinc-400">
+              Type commands to explore my profile
+            </p>
+          </div>
+
+          <div className="mx-auto max-w-5xl">
+            <TerminalGuide />
+          </div>
+        </section>
 
         {/* RESUME */}
         <motion.section
