@@ -395,6 +395,141 @@ export default function Home() {
           </div>
         </section>
 
+        {/* TIMELINE */}
+        <section
+          id="timeline"
+          className="relative z-10 mx-auto max-w-6xl px-6 pb-16 pt-6"
+        >
+          <div className="mb-10 text-center">
+            <h2 className="section-title text-3xl font-bold text-violet-300">Timeline</h2>
+            <p className="mt-2 text-sm text-zinc-400">
+              A quick snapshot of my path so far.
+            </p>
+          </div>
+
+          {/* Desktop timeline */}
+          <div className="relative mx-auto hidden max-w-6xl md:block">
+            <div className="absolute left-0 right-0 top-1/2 h-2 -translate-y-1/2 rounded-full bg-gradient-to-r from-violet-500/70 via-indigo-500/70 to-sky-400/70 shadow-[0_0_30px_rgba(99,102,241,0.35)]" />
+            <div className="relative grid grid-cols-4 gap-6">
+              {[
+                {
+                  year: "2023",
+                  title: "Computer Technician Intern",
+                  range: "Jun–Sep 2023 · Robert DeFalco Realty",
+                  desc: "Cut onboarding time and improved IT reliability across office operations.",
+                  accent: "#7c3aed",
+                },
+                {
+                  year: "2024",
+                  title: "FrontEnd Developer Intern",
+                  range: "Apr–Aug 2024 · Top Choice Realty",
+                  desc: "Shipped UX fixes and new UI flows, reducing client task time.",
+                  accent: "#6366f1",
+                },
+                {
+                  year: "2024",
+                  title: "Eternal Summary",
+                  range: "Sep 2023–Nov 2024",
+                  desc: "Built an AI summarizer extension for faster reading and recall.",
+                  accent: "#38bdf8",
+                },
+                {
+                  year: "2025",
+                  title: "Top Choice Realty",
+                  range: "Jun 2025–Present",
+                  desc: "Launching a real estate platform with secure listings and workflows.",
+                  accent: "#22d3ee",
+                },
+              ].map((item, index) => {
+                const isTop = index % 2 === 0;
+                return (
+                  <div key={`${item.year}-${item.title}`} className="relative min-h-[300px]">
+                    <div
+                      className={`absolute left-1/2 -translate-x-1/2 ${isTop ? "top-[calc(50%-150px)]" : "top-[calc(50%+70px)]"} w-[220px] rounded-2xl border border-white/10 bg-black/70 p-4 shadow-[0_12px_30px_rgba(0,0,0,0.35)]`}
+                    >
+                      <div className="text-sm font-semibold text-white">{item.title}</div>
+                      <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-violet-200/70">
+                        {item.range}
+                      </div>
+                      <p className="mt-3 text-xs text-zinc-300">{item.desc}</p>
+                    </div>
+                    <div
+                      className={`absolute left-1/2 -translate-x-1/2 ${isTop ? "top-[calc(50%-52px)]" : "top-[calc(50%+8px)]"} h-12 w-px`}
+                      style={{ backgroundColor: item.accent }}
+                    />
+                    <div
+                      className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[3px] bg-[#070910]"
+                      style={{ borderColor: item.accent }}
+                    >
+                      <span
+                        className="text-xs font-semibold tracking-[0.2em]"
+                        style={{ color: item.accent }}
+                      >
+                        {item.year}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Mobile timeline */}
+          <div className="space-y-6 md:hidden">
+            {[
+              {
+                year: "2023",
+                title: "Computer Technician Intern",
+                range: "Jun–Sep 2023 · Robert DeFalco Realty",
+                desc: "Cut onboarding time and improved IT reliability across office operations.",
+                accent: "#7c3aed",
+              },
+              {
+                year: "2024",
+                title: "FrontEnd Developer Intern",
+                range: "Apr–Aug 2024 · Top Choice Realty",
+                desc: "Shipped UX fixes and new UI flows, reducing client task time.",
+                accent: "#6366f1",
+              },
+              {
+                year: "2024",
+                title: "Eternal Summary",
+                range: "Sep 2023–Nov 2024",
+                desc: "Built an AI summarizer extension for faster reading and recall.",
+                accent: "#38bdf8",
+              },
+              {
+                year: "2025",
+                title: "Top Choice Realty",
+                range: "Jun 2025–Present",
+                desc: "Launching a real estate platform with secure listings and workflows.",
+                accent: "#22d3ee",
+              },
+            ].map((item) => (
+              <div
+                key={`${item.year}-${item.title}`}
+                className="rounded-2xl border border-white/10 bg-black/60 p-5"
+              >
+                <div className="flex items-center gap-3">
+                  <span
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border-[2px] text-xs font-semibold tracking-[0.2em]"
+                    style={{ borderColor: item.accent, color: item.accent }}
+                  >
+                    {item.year}
+                  </span>
+                  <div>
+                    <div className="text-sm font-semibold text-white">{item.title}</div>
+                    <div className="mt-1 text-[11px] uppercase tracking-[0.18em] text-violet-200/70">
+                      {item.range}
+                    </div>
+                  </div>
+                </div>
+                <p className="mt-3 text-xs text-zinc-300">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* RESUME */}
         <motion.section
           id="resume"
@@ -456,6 +591,16 @@ export default function Home() {
           id="contact"
           className="relative z-10 mx-auto max-w-6xl px-6 py-24"
         >
+          <div className="mx-auto mb-12 max-w-3xl rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 via-white/[0.03] to-transparent p-6 text-center">
+            <p className="text-sm text-zinc-300">
+              “Ali brings a rare mix of technical clarity and design intuition — a builder who
+              cares about both performance and experience.”
+            </p>
+            <p className="mt-3 text-xs uppercase tracking-[0.2em] text-zinc-500">
+              Mentor / Professor
+            </p>
+          </div>
+
           <div className="mx-auto mb-16 max-w-3xl text-center">
             <h2 className="section-title mb-6 text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-zinc-400 to-slate-400">
               Let's Connect
