@@ -451,7 +451,7 @@ export default function Home() {
                 return (
                   <div key={`${item.year}-${item.title}`} className="relative min-h-[320px]">
                     <div
-                      className={`absolute left-1/2 ${cardShift} ${isTop ? "top-[calc(50%-185px)]" : "top-[calc(50%+95px)]"} w-[230px] rounded-2xl border border-white/10 bg-black/70 p-4 shadow-[0_12px_30px_rgba(0,0,0,0.35)]`}
+                      className={`absolute left-1/2 ${cardShift} ${isTop ? "top-1/2 -translate-y-[calc(100%+60px)]" : "top-1/2 translate-y-[60px]"} w-[230px] rounded-2xl border border-white/10 bg-black/70 p-4 shadow-[0_12px_30px_rgba(0,0,0,0.35)]`}
                     >
                       <div className="text-sm font-semibold text-white">{item.title}</div>
                       <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-violet-200/70">
@@ -460,7 +460,7 @@ export default function Home() {
                       <p className="mt-3 text-xs text-zinc-300">{item.desc}</p>
                     </div>
                     <div
-                      className={`absolute left-1/2 -translate-x-1/2 ${isTop ? "top-[calc(50%-66px)]" : "top-[calc(50%+12px)]"} h-16 w-px`}
+                      className={`absolute left-1/2 -translate-x-1/2 ${isTop ? "top-1/2 -translate-y-[60px]" : "top-1/2"} h-[60px] w-px`}
                       style={{ backgroundColor: item.accent }}
                     />
                     <div
