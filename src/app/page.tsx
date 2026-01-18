@@ -400,7 +400,7 @@ export default function Home() {
           id="timeline"
           className="relative z-10 mx-auto max-w-6xl px-6 pb-24 pt-10"
         >
-          <div className="mb-10 text-center">
+          <div className="mb-14 text-center">
             <h2 className="section-title text-3xl font-bold text-violet-300">Timeline</h2>
             <p className="mt-2 text-sm text-zinc-400">
               A quick snapshot of my path so far.
