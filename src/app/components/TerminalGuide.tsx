@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { FormEvent, ReactNode } from "react";
 
 type Line = {
+  id: string;
   kind: "input" | "output";
   content: ReactNode;
 };
@@ -29,6 +30,7 @@ Type a command and press Enter!`}
 
 const INITIAL_LINES: Line[] = [
   {
+    id: "init-1",
     kind: "output",
     content: "Type 'help' to see a full list of commands.",
   },
@@ -40,8 +42,13 @@ export default function TerminalGuide() {
 
   const [input, setInput] = useState("");
   const [lines, setLines] = useState<Line[]>(INITIAL_LINES);
+  const [typing, setTyping] = useState<null | { id: string; text: string; index: number; runId: number }>(null);
   const endRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const queueRef = useRef<ReactNode[]>([]);
+  const typingTimerRef = useRef<number | null>(null);
+  const typingRef = useRef<typeof typing>(null);
+  const runIdRef = useRef(0);
   const focusInput = () => {
     inputRef.current?.focus();
   };
@@ -59,8 +66,10 @@ export default function TerminalGuide() {
         </pre>,
       ],
       about: [
-        "Ali Tleis is a computer science student focused on clean, scalable apps and expressive UI.",
-        "Based in Boston. Actively seeking software engineering co-ops and internships.",
+        "👋 Hey! I’m Ali — a CS student at Northeastern who loves clean UI and performance.",
+        "📍 Based in Boston • Open to software engineering co-ops & internships.",
+        "🎯 I enjoy building thoughtful products that feel fast, polished, and easy to use.",
+        "✨ Fun fact: I’m into video editing and fitness outside of coding.",
       ],
       skills: [
         "Frontend: Next.js, React, TypeScript, Tailwind, Framer Motion",
@@ -68,19 +77,20 @@ export default function TerminalGuide() {
         "Tools: Git, Docker, Linux",
       ],
       experience: [
-        "Project-focused portfolio with emphasis on UI, animation, and thoughtful UX.",
-        "Open to new opportunities and collaborations.",
+        "🧰 Computer Technician Intern — Robert DeFalco Realty (Jun–Sep 2023).",
+        "💻 FrontEnd Developer Intern — Top Choice Realty (Apr–Aug 2024).",
+        "🚀 Top Choice Realty — Real estate platform (Jun 2025–Present).",
       ],
       projects: [
-        "Top Choice Realty — real estate site (in progress).",
-        "Eternal Summary — Chrome extension for AI summaries.",
-        "CalorieCalculator — maintenance and goal calculator.",
+        "🏡 Top Choice Realty — real estate platform (in progress).",
+        "🧠 Eternal Summary — Chrome extension for AI summaries.",
+        "💪 CalorieCalculator — maintenance and goal calculator.",
       ],
       education: ["Northeastern University — Class of 2028."],
       contact: [
-        "School: tleis.a@northeastern.edu",
-        "Personal: alitleis0731@gmail.com",
-        "Location: Boston, MA",
+        "📧 School: tleis.a@northeastern.edu",
+        "✉️ Personal: alitleis0731@gmail.com",
+        "📍 Location: Boston, MA",
       ],
       resume: [
         "Resume PDF:",
@@ -123,10 +133,61 @@ export default function TerminalGuide() {
       endRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
     });
   }, [lines]);
-  
+
   useEffect(() => {
     focusInput();
   }, []);
+
+  useEffect(() => {
+    typingRef.current = typing;
+    if (!typing) return;
+    if (typing.runId !== runIdRef.current) return;
+    if (typingTimerRef.current) {
+      window.clearTimeout(typingTimerRef.current);
+    }
+    typingTimerRef.current = window.setTimeout(() => {
+      const nextIndex = typing.index + 1;
+      const nextText = typing.text.slice(0, nextIndex);
+      setLines((prev) =>
+        prev.map((line) =>
+          line.id === typing.id ? { ...line, content: nextText } : line
+        )
+      );
+      if (nextIndex >= typing.text.length) {
+        setTyping(null);
+        typingRef.current = null;
+        setTimeout(() => {
+          processQueue(typing.runId, true);
+        }, 0);
+      } else {
+        setTyping({ ...typing, index: nextIndex });
+      }
+    }, 12);
+    return () => {
+      if (typingTimerRef.current) {
+        window.clearTimeout(typingTimerRef.current);
+      }
+    };
+  }, [typing]);
+
+  const processQueue = (runId: number, force = false) => {
+    if (runId !== runIdRef.current) return;
+    if (!force && typingRef.current) return;
+    if (queueRef.current.length === 0) return;
+    const next = queueRef.current.shift();
+    if (next === undefined) return;
+
+    if (typeof next === "string") {
+      const id = `out-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+      setLines((prev) => [...prev, { id, kind: "output", content: "" }]);
+      setTyping({ id, text: next, index: 0, runId });
+      return;
+    }
+
+    const id = `out-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    setLines((prev) => [...prev, { id, kind: "output", content: next }]);
+    processQueue(runId, force);
+  };
 
   const runCommand = (raw: string) => {
     const cmd = raw.trim();
@@ -134,9 +195,30 @@ export default function TerminalGuide() {
     const normalized = cmd.toLowerCase();
 
     if (normalized === "clear") {
+      runIdRef.current += 1;
       setLines(INITIAL_LINES);
+      queueRef.current = [];
+      if (typingTimerRef.current) {
+        window.clearTimeout(typingTimerRef.current);
+      }
+      setTyping(null);
+      typingRef.current = null;
       return;
     }
+
+    if (typing) {
+      setLines((prev) =>
+        prev.map((line) =>
+          line.id === typing.id ? { ...line, content: typing.text } : line
+        )
+      );
+    }
+    if (typingTimerRef.current) {
+      window.clearTimeout(typingTimerRef.current);
+    }
+    setTyping(null);
+    typingRef.current = null;
+    queueRef.current = [];
 
     const response = commands[normalized];
     const outputs = response ?? [
@@ -145,9 +227,16 @@ export default function TerminalGuide() {
 
     setLines((prev) => [
       ...prev,
-      { kind: "input", content: `> ${cmd}` },
-      ...outputs.map<Line>((item) => ({ kind: "output", content: item })),
+      {
+        id: `in-${Date.now()}-${Math.random().toString(16).slice(2)}`,
+        kind: "input",
+        content: `> ${cmd}`,
+      },
     ]);
+    const runId = runIdRef.current + 1;
+    runIdRef.current = runId;
+    queueRef.current.push(...outputs);
+    processQueue(runId);
     focusInput();
   };
 
@@ -183,9 +272,9 @@ export default function TerminalGuide() {
       </div>
 
       <div className="mt-6 max-h-[340px] min-h-[190px] space-y-4 overflow-auto rounded-2xl border border-white/10 bg-black/50 p-6 text-[15px] leading-7 text-violet-100/90 font-mono">
-        {lines.map((line, index) => (
+        {lines.map((line) => (
           <div
-            key={`${line.kind}-${index}`}
+            key={line.id}
             className={line.kind === "input" ? "text-violet-300" : "text-violet-100/80"}
           >
             {line.content}
