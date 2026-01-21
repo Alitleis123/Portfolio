@@ -421,13 +421,6 @@ export default function Home() {
                 },
                 {
                   year: "2024",
-                  title: "FrontEnd Developer Intern",
-                  range: "Apr–Aug 2024 · Top Choice Realty",
-                  desc: "Shipped UX fixes and new UI flows, reducing client task time.",
-                  accent: "#6366f1",
-                },
-                {
-                  year: "2024",
                   title: "Eternal Summary",
                   range: "Sep 2023–Nov 2024",
                   desc: "Built an AI summarizer extension for faster reading and recall.",
@@ -435,9 +428,16 @@ export default function Home() {
                 },
                 {
                   year: "2025",
+                  title: "FrontEnd Developer Intern",
+                  range: "Jun–Sep 2025 · Top Choice Realty",
+                  desc: "Shipped UX fixes and new UI flows, reducing client task time.",
+                  accent: "#6366f1",
+                },
+                {
+                  year: "2025",
                   title: "Top Choice Realty",
-                  range: "Jun 2025–Present",
-                  desc: "Launching a real estate platform with secure listings and workflows.",
+                  range: "Jun–Sep 2025",
+                  desc: "Built a real estate platform with secure listings and workflows.",
                   accent: "#22d3ee",
                 },
               ].map((item, index) => {

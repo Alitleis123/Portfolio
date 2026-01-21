@@ -78,8 +78,7 @@ export default function TerminalGuide() {
       ],
       experience: [
         "🧰 Computer Technician Intern — Robert DeFalco Realty (Jun–Sep 2023).",
-        "💻 FrontEnd Developer Intern — Top Choice Realty (Apr–Aug 2024).",
-        "🚀 Top Choice Realty — Real estate platform (Jun 2025–Present).",
+        "💻 FrontEnd Developer Intern — Top Choice Realty (Jun–Sep 2025).",
       ],
       projects: [
         "🏡 Top Choice Realty — real estate platform (in progress).",
