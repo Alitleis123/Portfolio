@@ -341,6 +341,7 @@ export default function Home() {
               {
                 title: "Databases",
                 items: [
+                  "MongoDB",
                   "PostgreSQL",
                   "Relational Data Modeling",
                 ],
