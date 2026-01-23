@@ -335,7 +335,6 @@ export default function Home() {
                 title: "AI Systems",
                 items: [
                   "OpenAI API",
-                  "Prompt Engineering",
                   "AI Summarization Pipelines",
                 ],
               },
