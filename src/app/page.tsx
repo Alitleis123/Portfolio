@@ -353,7 +353,8 @@ export default function Home() {
                   "Docker",
                   "Linux",
                   "JWT",
-                  "Heroku"
+                  "Heroku",
+                  "Arduino"
                 ],
               },
             ].map((group) => (
