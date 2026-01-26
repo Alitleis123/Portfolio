@@ -301,22 +301,24 @@ export default function Home() {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                title: "Frontend",
+                title: "Frameworks & Libraries",
                 items: [
                   "React",
-                  "Next.js",
-                  "TypeScript",
-                  "Tailwind CSS",
-                  "Framer Motion",
+                  "Node.js/Express",
+                  "React Router",
+                  "MUI",
+                  "Vite",
+                  "Tkinter",
+                  "Django (basics)",
                 ],
               },
               {
-                title: "Backend",
+                title: "Backend & Systems",
                 items: [
-                  "Node.js",
-                  "Express.js",
                   "REST APIs",
-                  "JWT Authentication",
+                  "Authentication (JWT)",
+                  "Asynchronous Processing",
+                  "System Integration",
                 ],
               },
               {
@@ -327,34 +329,36 @@ export default function Home() {
                   "C#",
                   "C++",
                   "Python",
+                  "Lua",
                   "JavaScript",
                   "TypeScript",
                 ],
               },
               {
-                title: "AI Systems",
-                items: [
-                  "OpenAI API",
-                  "AI Summarization Pipelines",
-                ],
-              },
-              {
                 title: "Databases",
                 items: [
-                  "MongoDB",
+                  "MongoDB (Mongoose, Atlas)",
                   "PostgreSQL",
-                  "Relational Data Modeling",
+                  "MySQL",
                 ],
               },
               {
                 title: "Tools",
                 items: [
                   "Git / GitHub",
-                  "Docker",
                   "Linux",
-                  "JWT",
                   "Heroku",
+                  "GitHub Pages",
+                  "Jest/JUnit",
                   "Arduino"
+                ],
+              },
+              {
+                title: "Spoken Languages",
+                items: [
+                  "English (Native/Bilingual)",
+                  "Arabic (Native/Bilingual)",
+                  "French (Limited Working)",
                 ],
               },
             ].map((group) => (
