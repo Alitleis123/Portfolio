@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { useEffect, useState } from "react";
 import TerminalGuide from "./components/TerminalGuide";
 
@@ -24,6 +24,7 @@ export default function Home() {
   }, []);
 
   const [lightbox, setLightbox] = useState<null | { images: string[]; title: string }>(null);
+  const [openTimelineIndex, setOpenTimelineIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -32,6 +33,126 @@ export default function Home() {
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
+
+  const timelineItems = [
+    {
+      year: "2023",
+      title: "Computer Technician Intern",
+      range: "Jun–Sep 2023 · Robert DeFalco Realty",
+      desc: "Improved IT reliability while streamlining onboarding for new workstations.",
+      scope:
+        "Supported daily office operations by setting up hardware, resolving IT issues, and reducing downtime through repeatable standards.",
+      highlights: [
+        "Set up 20–30 office workstations with OS installs, software provisioning, and peripheral configuration.",
+        "Resolved performance, connectivity, and printer/email issues, closing ~10–15 tickets per week.",
+        "Standardized update, backup, and configuration baselines to reduce repeat incidents.",
+        "Provided on-site technical support to keep daily operations running smoothly.",
+      ],
+      details: [
+        "Installed and configured OS images, printers, scanners, and office peripherals.",
+        "Maintained an organized ticket backlog and documented fixes for faster resolution.",
+        "Verified endpoint security and baseline configurations after each setup.",
+        "Optimized common workstation templates to reduce setup variance.",
+      ],
+      impact: [
+        "Faster onboarding by shrinking setup time per device.",
+        "Higher system reliability through repeatable maintenance routines.",
+        "Improved staff productivity by resolving issues same-day.",
+        "Lowered repeat issues through standardized configurations.",
+      ],
+      stats: ["20–30 setups", "10–15 tickets/wk", "30–60 min avg"],
+      tech: ["Windows", "Office IT", "Hardware", "Troubleshooting"],
+      accent: "#7c3aed",
+    },
+    {
+      year: "2024",
+      title: "Eternal Summary",
+      range: "Sep 2023–Nov 2024",
+      desc: "Built an AI summarizer extension for faster reading and better recall.",
+      scope:
+        "Designed a full-stack summarization workflow with async processing, reliable extraction, and a readable UI layer.",
+      highlights: [
+        "Engineered an LLM-driven summarizer that reduces long-form reading time by ~75%.",
+        "Designed async request handling for low-latency summaries and stable API integration.",
+        "Improved extraction quality by ~30% with robust scraping and sanitization.",
+        "Integrated a clean UI layer to keep summaries readable and actionable.",
+      ],
+      details: [
+        "Built a request queue to keep response times consistent under load.",
+        "Added resilient parsing to handle messy HTML and dynamic pages.",
+        "Tuned prompt structure for consistent, concise summaries.",
+        "Exposed configurable summarization lengths for different use cases.",
+      ],
+      impact: [
+        "Reduced reading time for long pages while preserving key points.",
+        "Improved summary quality with better sanitization and parsing.",
+        "Built a reusable pipeline that’s easy to expand to new sources.",
+        "Increased reliability across diverse web content formats.",
+      ],
+      stats: ["75% faster reads", "30% accuracy lift", "LLM-powered"],
+      tech: ["Python", "Flask", "OpenAI API", "BeautifulSoup", "JavaScript", "HTML/CSS"],
+      accent: "#38bdf8",
+    },
+    {
+      year: "2025",
+      title: "Frontend Developer Intern",
+      range: "Jun–Sep 2025 · Top Choice Realty",
+      desc: "Shipped UI improvements that reduced friction in client workflows.",
+      scope:
+        "Worked closely with stakeholders to translate requirements into UI updates, workflow improvements, and data reliability fixes.",
+      highlights: [
+        "Collaborated cross-functionally to troubleshoot UX issues and iterate on UI flows.",
+        "Automated routine data cleanup and updates with Python scripts for better consistency.",
+        "Designed a centralized client/agent management system to remove duplicates and speed retrieval.",
+        "Translated business requirements into clean, user-friendly interfaces.",
+      ],
+      details: [
+        "Reduced data inconsistencies by validating critical fields at entry.",
+        "Improved navigation patterns to cut search-to-action time.",
+        "Standardized UI components for faster iteration and fewer regressions.",
+        "Delivered updates in tight feedback loops with non-technical stakeholders.",
+      ],
+      impact: [
+        "Reduced back-and-forth corrections through clearer UI flows.",
+        "Improved data consistency with automation and validation.",
+        "Delivered features faster with tighter feedback loops.",
+        "Raised overall usability and client satisfaction.",
+      ],
+      stats: ["20–30% faster tasks", "Cleaner data", "Cross-team delivery"],
+      tech: ["React", "TypeScript", "Python", "UX"],
+      accent: "#6366f1",
+    },
+    {
+      year: "2025",
+      title: "Top Choice Realty Platform",
+      range: "Jun–Sep 2025",
+      desc: "Launched a full-stack real estate platform with secure listings and workflows.",
+      scope:
+        "Built the end-to-end platform, from authenticated APIs and data models to a responsive agent-focused UI.",
+      highlights: [
+        "Built RESTful APIs for properties, users, and transactions with secure authentication.",
+        "Designed a responsive frontend optimized for usability and agent productivity.",
+        "Streamlined listings and client access to reduce operational bottlenecks.",
+        "Delivered the end-to-end product from data models to UI.",
+      ],
+      details: [
+        "Implemented role-based access for agents, admins, and clients.",
+        "Created reusable UI patterns for listings, filters, and client profiles.",
+        "Structured data models to support scalable listing growth.",
+        "Improved performance with lazy-loading and optimized assets.",
+      ],
+      impact: [
+        "Centralized property data for faster access and cleaner workflows.",
+        "Improved agent efficiency with a responsive, modern UI.",
+        "Established a scalable base for future product expansion.",
+        "Created a secure foundation for multi-user workflows.",
+      ],
+      stats: ["Full-stack launch", "RESTful APIs", "Responsive UI"],
+      tech: ["React", "Tailwind", "TypeScript", "Framer Motion", "GitHub Actions"],
+      accent: "#22d3ee",
+    },
+  ];
+
   return (
     <>
       <div className="relative min-h-screen overflow-hidden text-white">
@@ -412,132 +533,183 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Desktop timeline */}
-          <div className="relative mx-auto hidden max-w-6xl md:block">
-            <div className="absolute left-0 right-0 top-1/2 h-2 -translate-y-1/2 rounded-full bg-gradient-to-r from-violet-500/70 via-indigo-500/70 to-sky-400/70 shadow-[0_0_30px_rgba(99,102,241,0.35)]" />
-            <div className="relative grid grid-cols-4 gap-6">
-              {[
-                {
-                  year: "2023",
-                  title: "Computer Technician Intern",
-                  range: "Jun–Sep 2023 · Robert DeFalco Realty",
-                  desc: "Cut onboarding time and improved IT reliability across office operations.",
-                  accent: "#7c3aed",
-                },
-                {
-                  year: "2024",
-                  title: "Eternal Summary",
-                  range: "Sep 2023–Nov 2024",
-                  desc: "Built an AI summarizer extension for faster reading and recall.",
-                  accent: "#38bdf8",
-                },
-                {
-                  year: "2025",
-                  title: "FrontEnd Developer Intern",
-                  range: "Jun–Sep 2025 · Top Choice Realty",
-                  desc: "Shipped UX fixes and new UI flows, reducing client task time.",
-                  accent: "#6366f1",
-                },
-                {
-                  year: "2025",
-                  title: "Top Choice Realty",
-                  range: "Jun–Sep 2025",
-                  desc: "Built a real estate platform with secure listings and workflows.",
-                  accent: "#22d3ee",
-                },
-              ].map((item, index) => {
-                const isTop = index % 2 === 0;
-                const cardShift =
-                  index === 0
-                    ? "translate-x-[-40%]"
-                    : index === 3
-                      ? "translate-x-[-60%]"
-                      : "-translate-x-1/2";
+          <div className="relative">
+            <div className="absolute left-9 top-0 h-full w-px bg-gradient-to-b from-violet-500/70 via-indigo-500/50 to-sky-400/70 shadow-[0_0_24px_rgba(99,102,241,0.35)]" />
+            <div className="space-y-12 pl-20">
+              {timelineItems.map((item, index) => {
+                const isOpen = openTimelineIndex === index;
                 return (
-                  <div key={`${item.year}-${item.title}`} className="relative min-h-[320px]">
-                    <div
-                      className={`absolute left-1/2 ${cardShift} ${isTop ? "top-1/2 -translate-y-[calc(100%+60px)]" : "top-1/2 translate-y-[60px]"} w-[230px] rounded-2xl border border-white/10 bg-black/70 p-4 shadow-[0_12px_30px_rgba(0,0,0,0.35)]`}
-                    >
-                      <div className="text-sm font-semibold text-white">{item.title}</div>
-                      <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-violet-200/70">
-                        {item.range}
-                      </div>
-                      <p className="mt-3 text-xs text-zinc-300">{item.desc}</p>
-                    </div>
-                    <div
-                      className={`absolute left-1/2 -translate-x-1/2 ${isTop ? "top-1/2 -translate-y-[60px]" : "top-1/2"} h-[60px] w-px`}
-                      style={{ backgroundColor: item.accent }}
-                    />
-                    <div
-                      className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[3px] bg-[#070910]"
-                      style={{ borderColor: item.accent }}
-                    >
-                      <span
-                        className="text-xs font-semibold tracking-[0.2em]"
-                        style={{ color: item.accent }}
+                  <motion.div
+                    key={`${item.year}-${item.title}`}
+                    layout
+                    className="relative grid gap-6 lg:grid-cols-[120px_1fr]"
+                    initial={{ opacity: 0, y: 18 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.45, ease: "easeOut" }}
+                  >
+                    <div className="relative hidden items-start justify-center lg:flex">
+                      <div
+                        className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full border-[2px] bg-[#070910]/90 shadow-[0_0_0_8px_rgba(8,10,18,0.7),0_14px_35px_rgba(0,0,0,0.4)]"
+                        style={{ borderColor: item.accent }}
                       >
-                        {item.year}
-                      </span>
+                        <span
+                          className="text-xs font-semibold tracking-[0.3em]"
+                          style={{ color: item.accent }}
+                        >
+                          {item.year}
+                        </span>
+                      </div>
                     </div>
-                  </div>
+                    <div className="relative lg:pl-0">
+                      <div
+                        className="absolute -left-12 top-8 hidden h-px w-10 lg:block"
+                        style={{ backgroundColor: item.accent }}
+                      />
+                      <div
+                        className="absolute -left-14 top-6 flex h-12 w-12 items-center justify-center rounded-full border-[2px] bg-[#070910]/90 shadow-[0_0_0_6px_rgba(8,10,18,0.7),0_12px_30px_rgba(0,0,0,0.35)] lg:hidden"
+                        style={{ borderColor: item.accent }}
+                      >
+                        <span
+                          className="text-[11px] font-semibold tracking-[0.3em]"
+                          style={{ color: item.accent }}
+                        >
+                          {item.year}
+                        </span>
+                      </div>
+
+                      <motion.div
+                        layout
+                        className={`relative w-full ${isOpen ? "max-w-[1100px]" : "max-w-[720px]"} rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 via-white/[0.03] to-transparent p-6 shadow-[0_18px_40px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-all duration-300`}
+                        style={{ borderColor: isOpen ? item.accent : undefined }}
+                      >
+                        <div
+                          className={`pointer-events-none absolute -inset-1 rounded-2xl opacity-0 transition duration-300 ${isOpen ? "opacity-80" : ""}`}
+                          style={{
+                            background: `radial-gradient(140% 140% at 20% 20%, ${item.accent}50, transparent 65%)`,
+                          }}
+                        />
+                        <div className="relative">
+                          <div className="flex flex-wrap items-start justify-between gap-4">
+                            <div>
+                              <div className="text-base font-semibold text-white">
+                                {item.title}
+                              </div>
+                              <div className="mt-2 text-[11px] uppercase tracking-[0.2em] text-violet-200/70">
+                                {item.range}
+                              </div>
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setOpenTimelineIndex((current) =>
+                                  current === index ? null : index
+                                )
+                              }
+                              className="rounded-full border border-violet-400/30 bg-violet-400/10 px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-violet-100/90 transition hover:border-violet-400/80 hover:bg-violet-400/20"
+                              aria-expanded={isOpen}
+                              aria-controls={`timeline-details-${index}`}
+                            >
+                              {isOpen ? "Hide" : "Expand"}
+                            </button>
+                          </div>
+                          <p className="mt-4 text-sm text-zinc-300">{item.desc}</p>
+
+                          <AnimatePresence initial={false}>
+                            {isOpen ? (
+                              <motion.div
+                                id={`timeline-details-${index}`}
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: "auto", opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.4, ease: "easeOut" }}
+                                className="overflow-hidden"
+                              >
+                                <div className="mt-6 grid gap-6 text-sm text-zinc-300 lg:grid-cols-[1.25fr_0.75fr]">
+                                  <div className="space-y-5">
+                                    <div>
+                                      <div className="text-xs uppercase tracking-[0.2em] text-violet-200/70">
+                                        Scope
+                                      </div>
+                                      <p className="mt-2 text-sm text-zinc-300">
+                                        {item.scope}
+                                      </p>
+                                    </div>
+                                    <div>
+                                      <div className="text-xs uppercase tracking-[0.2em] text-violet-200/70">
+                                        Key Contributions
+                                      </div>
+                                      <ul className="mt-3 space-y-2 pl-5 text-[13px]">
+                                        {item.highlights.map((detail) => (
+                                          <li key={detail} className="list-disc">
+                                            {detail}
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    </div>
+                                    <div>
+                                      <div className="text-xs uppercase tracking-[0.2em] text-violet-200/70">
+                                        Deep Dive
+                                      </div>
+                                      <ul className="mt-3 space-y-2 pl-5 text-[13px]">
+                                        {item.details.map((detail) => (
+                                          <li key={detail} className="list-disc">
+                                            {detail}
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    </div>
+                                  </div>
+                                  <div className="space-y-5">
+                                    <div className="flex flex-wrap gap-2">
+                                      {item.stats.map((stat) => (
+                                        <span
+                                          key={stat}
+                                          className="rounded-full border border-violet-400/30 bg-violet-400/10 px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-violet-100/80"
+                                        >
+                                          {stat}
+                                        </span>
+                                      ))}
+                                    </div>
+                                    <div>
+                                      <div className="text-xs uppercase tracking-[0.2em] text-violet-200/70">
+                                        Impact
+                                      </div>
+                                      <ul className="mt-3 space-y-2 pl-5 text-[13px]">
+                                        {item.impact.map((detail) => (
+                                          <li key={detail} className="list-disc">
+                                            {detail}
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    </div>
+                                    <div>
+                                      <div className="text-xs uppercase tracking-[0.2em] text-violet-200/70">
+                                        Stack
+                                      </div>
+                                      <div className="mt-3 flex flex-wrap gap-2">
+                                        {item.tech.map((tool) => (
+                                          <span
+                                            key={tool}
+                                            className="rounded-full border border-white/10 bg-black/40 px-4 py-2 text-[10px] uppercase tracking-[0.18em] text-zinc-200/70"
+                                          >
+                                            {tool}
+                                          </span>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </motion.div>
+                            ) : null}
+                          </AnimatePresence>
+                        </div>
+                      </motion.div>
+                    </div>
+                  </motion.div>
                 );
               })}
             </div>
-          </div>
-
-          {/* Mobile timeline */}
-          <div className="space-y-6 md:hidden">
-            {[
-              {
-                year: "2023",
-                title: "Computer Technician Intern",
-                range: "Jun–Sep 2023 · Robert DeFalco Realty",
-                desc: "Cut onboarding time and improved IT reliability across office operations.",
-                accent: "#7c3aed",
-              },
-              {
-                year: "2024",
-                title: "FrontEnd Developer Intern",
-                range: "Apr–Aug 2024 · Top Choice Realty",
-                desc: "Shipped UX fixes and new UI flows, reducing client task time.",
-                accent: "#6366f1",
-              },
-              {
-                year: "2024",
-                title: "Eternal Summary",
-                range: "Sep 2023–Nov 2024",
-                desc: "Built an AI summarizer extension for faster reading and recall.",
-                accent: "#38bdf8",
-              },
-              {
-                year: "2025",
-                title: "Top Choice Realty",
-                range: "Jun 2025–Present",
-                desc: "Launching a real estate platform with secure listings and workflows.",
-                accent: "#22d3ee",
-              },
-            ].map((item) => (
-              <div
-                key={`${item.year}-${item.title}`}
-                className="rounded-2xl border border-white/10 bg-black/60 p-5"
-              >
-                <div className="flex items-center gap-3">
-                  <span
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border-[2px] text-xs font-semibold tracking-[0.2em]"
-                    style={{ borderColor: item.accent, color: item.accent }}
-                  >
-                    {item.year}
-                  </span>
-                  <div>
-                    <div className="text-sm font-semibold text-white">{item.title}</div>
-                    <div className="mt-1 text-[11px] uppercase tracking-[0.18em] text-violet-200/70">
-                      {item.range}
-                    </div>
-                  </div>
-                </div>
-                <p className="mt-3 text-xs text-zinc-300">{item.desc}</p>
-              </div>
-            ))}
           </div>
         </section>
 
@@ -602,125 +774,174 @@ export default function Home() {
           id="contact"
           className="relative z-10 mx-auto max-w-6xl px-6 py-24"
         >
-          <div className="mx-auto mb-12 max-w-3xl rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 via-white/[0.03] to-transparent p-6 text-center">
-            <p className="text-sm text-zinc-300">
-              “Ali brings a rare mix of technical clarity and design intuition — a builder who
-              cares about both performance and experience.”
-            </p>
-            <p className="mt-3 text-xs uppercase tracking-[0.2em] text-zinc-500">
-              Robert DeFalco · CEO
-            </p>
-          </div>
-
-          <div className="mx-auto mb-16 max-w-3xl text-center">
-            <h2 className="section-title mb-6 text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-zinc-400 to-slate-400">
-              Let's Connect
-            </h2>
-
-            <p className="text-lg leading-8 text-zinc-300">
-              If you’d like to reach out about opportunities, projects, or anything else,
-              feel free to get in touch. I’m always open to meaningful conversations and
-              new experiences.
-              <br />
-              <span className="text-zinc-400">
-                Actively seeking software engineering co-ops and internships
-              </span>
-            </p>
-          </div>
-
-          <div className="grid gap-10 md:grid-cols-2">
-            {/* CONTACT INFO */}
-            <div className="rounded-2xl border border-white/15 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-8 backdrop-blur-xl">
-              <h3 className="mb-6 text-xl font-semibold">Get in Touch</h3>
-
-              <div className="space-y-6">
-                <div>
-                  <span className="block text-xs uppercase tracking-widest text-zinc-400">
-                    School Email
-                  </span>
-                  <p className="mt-1 text-lg font-medium text-white">
-                    tleis.a@northeastern.edu
-                  </p>
+          <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 via-white/[0.02] to-transparent p-10 shadow-[0_20px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+            <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+              <div>
+                <h2 className="section-title text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-zinc-200 to-slate-400">
+                  Let's Connect
+                </h2>
+                <p className="mt-5 text-lg leading-8 text-zinc-300">
+                  If you’d like to reach out about opportunities, projects, or anything else,
+                  feel free to get in touch. I’m always open to meaningful conversations and
+                  new experiences.
+                </p>
+                <p className="mt-4 text-sm uppercase tracking-[0.2em] text-zinc-400">
+                  Actively seeking software engineering co-ops and internships
+                </p>
+                <div className="mt-6 inline-flex rounded-full border border-white/10 bg-black/40 px-5 py-2 text-xs uppercase tracking-[0.2em] text-zinc-400">
+                  “A builder who cares about performance and experience.” — Robert DeFalco, CEO
                 </div>
 
-                <div>
-                  <span className="block text-xs uppercase tracking-widest text-zinc-400">
-                    Personal Email
-                  </span>
-                  <p className="mt-1 text-lg font-medium text-white">
-                    alitleis0731@gmail.com
-                  </p>
+                <div className="mt-8 flex flex-wrap gap-4">
+                  <a
+                    href="mailto:tleis.a@northeastern.edu"
+                    className="rounded-xl border border-white/20 bg-white/5 px-6 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10"
+                  >
+                    Email Me
+                  </a>
+                  <a
+                    href={withBasePath("/resume/resume.pdf")}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-xl border border-indigo-400/40 bg-indigo-500/20 px-6 py-3 text-sm font-medium text-indigo-100 transition hover:bg-indigo-500/30"
+                  >
+                    View Resume
+                  </a>
                 </div>
 
-                <div className="grid grid-cols-2 gap-6 pt-4">
-                  <div>
-                    <span className="block text-xs uppercase tracking-widest text-zinc-400">
-                      Location
-                    </span>
-                    <p className="mt-1 text-base text-zinc-300">
-                      Boston, MA
-                    </p>
+                <div className="mt-8 rounded-2xl border border-white/10 bg-black/40 p-5">
+                  <div className="text-xs uppercase tracking-[0.2em] text-zinc-400">
+                    Primary Contact
                   </div>
-
-                  <div>
-                    <span className="block text-xs uppercase tracking-widest text-zinc-400">
-                      Phone
-                    </span>
-                    <p className="mt-1 text-base text-zinc-300">
-                      347‑513‑4098
-                    </p>
+                  <div className="mt-4 space-y-4">
+                    <div>
+                      <span className="block text-[11px] uppercase tracking-widest text-zinc-500">
+                        School Email
+                      </span>
+                      <a
+                        href="mailto:tleis.a@northeastern.edu"
+                        className="mt-2 inline-flex items-center gap-2 text-base font-medium text-white transition hover:text-indigo-200"
+                      >
+                        tleis.a@northeastern.edu
+                      </a>
+                    </div>
+                    <div>
+                      <span className="block text-[11px] uppercase tracking-widest text-zinc-500">
+                        Personal Email
+                      </span>
+                      <a
+                        href="mailto:alitleis0731@gmail.com"
+                        className="mt-2 inline-flex items-center gap-2 text-base font-medium text-white transition hover:text-indigo-200"
+                      >
+                        alitleis0731@gmail.com
+                      </a>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4 pt-2 text-sm text-zinc-300">
+                      <div>
+                        <span className="block text-[11px] uppercase tracking-widest text-zinc-500">
+                          Location
+                        </span>
+                        <p className="mt-1">Boston, MA</p>
+                      </div>
+                      <div>
+                        <span className="block text-[11px] uppercase tracking-widest text-zinc-500">
+                          Phone
+                        </span>
+                        <p className="mt-1">347‑513‑4098</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* LINKS */}
-            <div className="rounded-2xl border border-white/15 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-8 backdrop-blur-xl">
-              <h3 className="mb-6 text-xl font-semibold">Find Me Online</h3>
+              <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-black/70 via-black/40 to-black/20 p-6 shadow-[inset_0_0_30px_rgba(99,102,241,0.08)]">
+                <h3 className="text-lg font-semibold text-white">Availability</h3>
+                <div className="mt-4 grid gap-4 text-sm text-zinc-300">
+                  <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                    <div className="text-xs uppercase tracking-[0.2em] text-zinc-400">
+                      Location
+                    </div>
+                    <div className="mt-2 text-base text-white">Boston, MA</div>
+                  </div>
+                  <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                    <div className="text-xs uppercase tracking-[0.2em] text-zinc-400">
+                      Status
+                    </div>
+                    <div className="mt-2 text-base text-white">
+                      Open to internships and co-ops
+                    </div>
+                  </div>
+                  <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                    <div className="text-xs uppercase tracking-[0.2em] text-zinc-400">
+                      Response Time
+                    </div>
+                    <div className="mt-2 text-base text-white">Usually within 24 hours</div>
+                  </div>
+                </div>
 
-              <div className="space-y-4">
-                {[
-                  {
-                    title: "GitHub",
-                    desc: "Projects, experiments, and source code",
-                    href: "https://github.com/Alitleis123",
-                    external: true,
-                  },
-                  {
-                    title: "LinkedIn",
-                    desc: "Professional background and updates",
-                    href: "https://www.linkedin.com/in/ali-tleis-091800247/",
-                    external: true,
-                  },
-                  {
-                    title: "Portfolio Projects",
-                    desc: "Selected featured work",
-                    href: "#projects",
-                    external: false,
-                  },
-                ].map((item) =>
-                  item.external ? (
-                    <a
-                      key={item.title}
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block rounded-xl border border-white/10 bg-black/30 px-5 py-4 transition hover:bg-white/10"
-                    >
-                      <div className="font-medium">{item.title}</div>
-                      <div className="text-sm text-zinc-400">{item.desc}</div>
-                    </a>
-                  ) : (
-                    <a
-                      key={item.title}
-                      href={item.href}
-                      className="block rounded-xl border border-white/10 bg-black/30 px-5 py-4 transition hover:bg-white/10"
-                    >
-                      <div className="font-medium">{item.title}</div>
-                      <div className="text-sm text-zinc-400">{item.desc}</div>
-                    </a>
-                  )
-                )}
+                <div className="mt-6 rounded-xl border border-white/10 bg-black/30 p-4">
+                  <div className="text-xs uppercase tracking-[0.2em] text-zinc-400">
+                    Find Me Online
+                  </div>
+                  <div className="mt-4 space-y-3">
+                    {[
+                      {
+                        title: "GitHub",
+                        desc: "Projects, experiments, and source code",
+                        href: "https://github.com/Alitleis123",
+                        external: true,
+                      },
+                      {
+                        title: "LinkedIn",
+                        desc: "Professional background and updates",
+                        href: "https://www.linkedin.com/in/ali-tleis-091800247/",
+                        external: true,
+                      },
+                      {
+                        title: "Portfolio Projects",
+                        desc: "Selected featured work",
+                        href: "#projects",
+                        external: false,
+                      },
+                    ].map((item) =>
+                      item.external ? (
+                        <a
+                          key={item.title}
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group block rounded-xl border border-white/10 bg-black/40 px-4 py-3 transition hover:border-white/30 hover:bg-white/10"
+                        >
+                          <div className="flex items-center justify-between gap-3">
+                            <div>
+                              <div className="font-medium text-white">{item.title}</div>
+                              <div className="text-xs text-zinc-400">{item.desc}</div>
+                            </div>
+                            <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 transition group-hover:text-indigo-200">
+                              Visit
+                            </span>
+                          </div>
+                        </a>
+                      ) : (
+                        <a
+                          key={item.title}
+                          href={item.href}
+                          className="group block rounded-xl border border-white/10 bg-black/40 px-4 py-3 transition hover:border-white/30 hover:bg-white/10"
+                        >
+                          <div className="flex items-center justify-between gap-3">
+                            <div>
+                              <div className="font-medium text-white">{item.title}</div>
+                              <div className="text-xs text-zinc-400">{item.desc}</div>
+                            </div>
+                            <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 transition group-hover:text-indigo-200">
+                              Explore
+                            </span>
+                          </div>
+                        </a>
+                      )
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
