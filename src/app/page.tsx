@@ -13,15 +13,26 @@ const fadeUp: Variants = {
   },
 };
 
+const heroContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.08, delayChildren: 0.1 },
+  },
+};
+
+const heroItem: Variants = {
+  hidden: { opacity: 0, y: 12 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
+
+const SectionDivider = () => (
+  <div className="section-divider" aria-hidden="true" />
+);
+
 export default function Home() {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   const withBasePath = (path: string) => `${basePath}${path}`;
-
-  useEffect(() => {
-    if (window.location.hash) {
-      history.replaceState(null, "", window.location.pathname);
-    }
-  }, []);
 
   const [lightbox, setLightbox] = useState<null | { images: string[]; title: string }>(null);
   const [openTimelineIndex, setOpenTimelineIndex] = useState<number | null>(null);
@@ -165,19 +176,34 @@ export default function Home() {
 
             {/* LEFT — NAME */}
             <div className="flex flex-col">
-              <h1 className="mb-6 text-[4.5rem] font-light leading-tight tracking-wide">
-                Ali<br />Tleis
-              </h1>
+              <motion.h1
+                className="mb-6 text-[4.5rem] font-light leading-tight tracking-wide"
+                variants={heroContainer}
+                initial="hidden"
+                animate="visible"
+              >
+                <motion.span variants={heroItem} className="block">
+                  Ali
+                </motion.span>
+                <motion.span variants={heroItem} className="block">
+                  Tleis
+                </motion.span>
+              </motion.h1>
               <div className="mb-5 whitespace-nowrap text-xs font-medium uppercase tracking-[0.25em] text-zinc-500">
                 Lebanese‑American <span className="mx-2 opacity-40">•</span>
                 Boston, MA <span className="mx-2 opacity-40">•</span>
                 Northeastern ’28
               </div>
 
-              <p className="max-w-md text-lg text-zinc-400">
+              <motion.p
+                className="max-w-md text-lg text-zinc-400"
+                variants={heroContainer}
+                initial="hidden"
+                animate="visible"
+              >
                 Computer Science student focused on building clean, scalable applications,
                 with a strong interest in expressive UI, motion design, and creative tooling.
-              </p>
+              </motion.p>
 
               <div className="mt-10 flex flex-wrap items-center gap-4 pointer-events-auto">
                 <a
@@ -239,6 +265,8 @@ export default function Home() {
 
           </div>
         </section>
+
+        <SectionDivider />
 
         {/* PROJECTS */}
         <motion.section
@@ -321,10 +349,13 @@ export default function Home() {
             ].map((project) => (
               <motion.div
                 key={project.title}
-                className="rounded-2xl border border-white/15 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-6 backdrop-blur-xl"
-                whileHover={{ y: -8, boxShadow: "0 0 40px rgba(99,102,241,0.25)" }}
+                className="group relative overflow-hidden rounded-2xl border border-white/15 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-6 backdrop-blur-xl"
+                whileHover={{ y: -8, boxShadow: "0 0 50px rgba(99,102,241,0.35)" }}
                 transition={{ type: "spring", stiffness: 200 }}
               >
+                <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
+                  <div className="absolute -inset-10 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.25),transparent_65%)]" />
+                </div>
                 <button
                   type="button"
                   onClick={() =>
@@ -339,9 +370,9 @@ export default function Home() {
                   <img
                     src={project.image}
                     alt={`${project.title} preview`}
-                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.08]"
                   />
-                  <div className="absolute inset-0 bg-black/25 transition group-hover:bg-black/15" />
+                  <div className="absolute inset-0 bg-black/25 transition group-hover:bg-black/10" />
                   <div className="pointer-events-none absolute bottom-3 right-3 rounded-lg border border-white/15 bg-black/40 px-3 py-1 text-xs text-white/80 backdrop-blur">
                     Click to expand
                   </div>
@@ -403,6 +434,8 @@ export default function Home() {
             ))}
           </div>
         </motion.section>
+
+        <SectionDivider />
 
         {/* TECH STACK */}
         <motion.section
@@ -505,6 +538,8 @@ export default function Home() {
           </div>
         </motion.section>
 
+        <SectionDivider />
+
         <section
           id="terminal"
           className="relative z-10 mx-auto max-w-6xl px-6 pb-24 pt-6"
@@ -520,6 +555,8 @@ export default function Home() {
             <TerminalGuide />
           </div>
         </section>
+
+        <SectionDivider />
 
         {/* TIMELINE */}
         <section
@@ -549,10 +586,10 @@ export default function Home() {
                     transition={{ duration: 0.45, ease: "easeOut" }}
                   >
                     <div className="relative hidden items-start justify-center lg:flex">
-                      <div
-                        className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full border-[2px] bg-[#070910]/90 shadow-[0_0_0_8px_rgba(8,10,18,0.7),0_14px_35px_rgba(0,0,0,0.4)]"
-                        style={{ borderColor: item.accent }}
-                      >
+                    <div
+                      className={`relative z-10 flex h-16 w-16 items-center justify-center rounded-full border-[2px] bg-[#070910]/90 shadow-[0_0_0_8px_rgba(8,10,18,0.7),0_14px_35px_rgba(0,0,0,0.4)] transition ${isOpen ? "ring-pulse" : ""}`}
+                      style={{ borderColor: item.accent }}
+                    >
                         <span
                           className="text-xs font-semibold tracking-[0.3em]"
                           style={{ color: item.accent }}
@@ -567,7 +604,7 @@ export default function Home() {
                         style={{ backgroundColor: item.accent }}
                       />
                       <div
-                        className="absolute -left-14 top-6 flex h-12 w-12 items-center justify-center rounded-full border-[2px] bg-[#070910]/90 shadow-[0_0_0_6px_rgba(8,10,18,0.7),0_12px_30px_rgba(0,0,0,0.35)] lg:hidden"
+                        className={`absolute -left-14 top-6 flex h-12 w-12 items-center justify-center rounded-full border-[2px] bg-[#070910]/90 shadow-[0_0_0_6px_rgba(8,10,18,0.7),0_12px_30px_rgba(0,0,0,0.35)] transition lg:hidden ${isOpen ? "ring-pulse" : ""}`}
                         style={{ borderColor: item.accent }}
                       >
                         <span
@@ -713,6 +750,8 @@ export default function Home() {
           </div>
         </section>
 
+        <SectionDivider />
+
         {/* RESUME */}
         <motion.section
           id="resume"
@@ -768,6 +807,8 @@ export default function Home() {
             </div>
           </div>
         </motion.section>
+
+        <SectionDivider />
 
         {/* CONTACT */}
         <section
