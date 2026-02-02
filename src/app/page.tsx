@@ -83,9 +83,9 @@ export default function Home() {
       scope:
         "Designed a full-stack summarization workflow with async processing, reliable extraction, and a readable UI layer.",
       highlights: [
-        "Engineered an LLM-driven summarizer that reduces long-form reading time by ~75%.",
+        "Engineered an LLM-driven summarizer to condense long-form pages into clear takeaways.",
         "Designed async request handling for low-latency summaries and stable API integration.",
-        "Improved extraction quality by ~30% with robust scraping and sanitization.",
+        "Improved extraction quality with robust scraping and sanitization.",
         "Integrated a clean UI layer to keep summaries readable and actionable.",
       ],
       details: [
@@ -95,13 +95,20 @@ export default function Home() {
         "Exposed configurable summarization lengths for different use cases.",
       ],
       impact: [
-        "Reduced reading time for long pages while preserving key points.",
+        "Tested outputs with sample pages and user feedback loops.",
         "Improved summary quality with better sanitization and parsing.",
         "Built a reusable pipeline that’s easy to expand to new sources.",
         "Increased reliability across diverse web content formats.",
       ],
-      stats: ["75% faster reads", "30% accuracy lift", "LLM-powered"],
-      tech: ["Python", "Flask", "OpenAI API", "BeautifulSoup", "JavaScript", "HTML/CSS"],
+      stats: ["User-tested", "Latency-focused", "LLM-powered"],
+      tech: [
+        "JavaScript (ES6+)",
+        "HTML",
+        "CSS",
+        "Chrome Extension (MV3)",
+        "OpenAI API",
+        "fetch",
+      ],
       accent: "#38bdf8",
     },
     {
@@ -266,8 +273,6 @@ export default function Home() {
           </div>
         </section>
 
-        <SectionDivider />
-
         {/* PROJECTS */}
         <motion.section
           id="projects"
@@ -278,7 +283,7 @@ export default function Home() {
           viewport={{ once: true }}
         >
           <h2 className="section-title mb-4 text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-zinc-300 to-slate-400">
-            Selected Projects
+            Featured Projects
           </h2>
 
           <p className="mb-12 max-w-2xl text-lg text-zinc-300">
@@ -435,8 +440,6 @@ export default function Home() {
           </div>
         </motion.section>
 
-        <SectionDivider />
-
         {/* TECH STACK */}
         <motion.section
           id="tech-stack"
@@ -537,8 +540,6 @@ export default function Home() {
             ))}
           </div>
         </motion.section>
-
-        <SectionDivider />
 
         <section
           id="terminal"
