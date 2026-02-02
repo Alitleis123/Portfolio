@@ -188,7 +188,7 @@ export default function Home() {
     "TypeScript",
     "Next.js",
     "Node.js",
-    "Python",
+    "JavaScript",
     "Tailwind CSS",
   ];
 
