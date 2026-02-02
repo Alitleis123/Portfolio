@@ -155,8 +155,8 @@ export default function Home() {
       title: "Top Choice Realty Platform",
       range: "Jun–Sep 2025",
       desc: "Launched a full-stack real estate platform with secure listings and workflows.",
-      image: withBasePath("/Timeline/Top%20Choice%20Realty.jpg"),
-      imageAlt: "Top Choice Realty platform",
+      image: withBasePath("/projects/Top%20choice%20image%201.png"),
+      imageAlt: "Top Choice Realty platform preview",
       scope:
         "Built the end-to-end platform, from authenticated APIs and data models to a responsive agent-focused UI.",
       highlights: [
