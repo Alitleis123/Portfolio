@@ -55,6 +55,8 @@ export default function Home() {
       title: "Computer Technician Intern",
       range: "Jun–Sep 2023 · Robert DeFalco Realty",
       desc: "Improved IT reliability while streamlining onboarding for new workstations.",
+      image: withBasePath("/Timeline/RobertDe%20Falco.png"),
+      imageAlt: "Robert DeFalco Realty",
       scope:
         "Supported daily office operations by setting up hardware, resolving IT issues, and reducing downtime through repeatable standards.",
       highlights: [
@@ -84,6 +86,8 @@ export default function Home() {
       title: "Eternal Summary",
       range: "Sep 2023–Nov 2024",
       desc: "Built an AI summarizer extension for faster reading and better recall.",
+      image: withBasePath("/Timeline/eternal%20summary%20icon.png"),
+      imageAlt: "Eternal Summary icon",
       scope:
         "Designed a full-stack summarization workflow with async processing, reliable extraction, and a readable UI layer.",
       highlights: [
@@ -120,6 +124,8 @@ export default function Home() {
       title: "Frontend Developer Intern",
       range: "Jun–Sep 2025 · Top Choice Realty",
       desc: "Shipped UI improvements that reduced friction in client workflows.",
+      image: withBasePath("/Timeline/Top%20Choice%20Realty.jpg"),
+      imageAlt: "Top Choice Realty",
       scope:
         "Worked closely with stakeholders to translate requirements into UI updates, workflow improvements, and data reliability fixes.",
       highlights: [
@@ -149,6 +155,8 @@ export default function Home() {
       title: "Top Choice Realty Platform",
       range: "Jun–Sep 2025",
       desc: "Launched a full-stack real estate platform with secure listings and workflows.",
+      image: withBasePath("/Timeline/Top%20Choice%20Realty.jpg"),
+      imageAlt: "Top Choice Realty platform",
       scope:
         "Built the end-to-end platform, from authenticated APIs and data models to a responsive agent-focused UI.",
       highlights: [
@@ -200,6 +208,7 @@ export default function Home() {
                   Tleis
                 </motion.span>
               </motion.h1>
+
               <div className="mb-5 whitespace-nowrap text-xs font-medium uppercase tracking-[0.25em] text-zinc-500">
                 Lebanese‑American <span className="mx-2 opacity-40">•</span>
                 Boston, MA <span className="mx-2 opacity-40">•</span>
@@ -310,11 +319,13 @@ export default function Home() {
                   "Clean, fast browsing experience",
                   "Built with a modern UI focus",
                 ],
-                image: withBasePath("/file.svg"),
+                image: withBasePath("/projects/Top%20choice%20image%201.png"),
                 images: [
-                  withBasePath("/file.svg"),
-                  withBasePath("/window.svg"),
-                  withBasePath("/globe.svg"),
+                  withBasePath("/projects/Top%20choice%20image%201.png"),
+                  withBasePath("/projects/Top%20choice%20image%202.png"),
+                  withBasePath("/projects/Top%20choice%20image%203.png"),
+                  withBasePath("/projects/Top%20choice%20image%204.png"),
+                  withBasePath("/projects/Top%20choice%20image%205.png"),
                 ],
               },
               {
@@ -635,12 +646,23 @@ export default function Home() {
                         />
                         <div className="relative">
                           <div className="flex flex-wrap items-start justify-between gap-4">
-                            <div>
-                              <div className="text-base font-semibold text-white">
-                                {item.title}
-                              </div>
-                              <div className="mt-2 text-[11px] uppercase tracking-[0.2em] text-violet-200/70">
-                                {item.range}
+                            <div className="flex items-center gap-4">
+                              {item.image ? (
+                                <div className="h-14 w-14 overflow-hidden rounded-xl border border-white/10 bg-black/40">
+                                  <img
+                                    src={item.image}
+                                    alt={item.imageAlt}
+                                    className="h-full w-full object-cover"
+                                  />
+                                </div>
+                              ) : null}
+                              <div>
+                                <div className="text-base font-semibold text-white">
+                                  {item.title}
+                                </div>
+                                <div className="mt-2 text-[11px] uppercase tracking-[0.2em] text-violet-200/70">
+                                  {item.range}
+                                </div>
                               </div>
                             </div>
                             <button
@@ -703,30 +725,6 @@ export default function Home() {
                                         ))}
                                       </ul>
                                     </div>
-                                  </div>
-                                  <div className="space-y-5">
-                                    <div className="flex flex-wrap gap-2">
-                                      {item.stats.map((stat) => (
-                                        <span
-                                          key={stat}
-                                          className="rounded-full border border-violet-400/30 bg-violet-400/10 px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-violet-100/80"
-                                        >
-                                          {stat}
-                                        </span>
-                                      ))}
-                                    </div>
-                                    <div>
-                                      <div className="text-xs uppercase tracking-[0.2em] text-violet-200/70">
-                                        Impact
-                                      </div>
-                                      <ul className="mt-3 space-y-2 pl-5 text-[13px]">
-                                        {item.impact.map((detail) => (
-                                          <li key={detail} className="list-disc">
-                                            {detail}
-                                          </li>
-                                        ))}
-                                      </ul>
-                                    </div>
                                     <div>
                                       <div className="text-xs uppercase tracking-[0.2em] text-violet-200/70">
                                         Stack
@@ -741,6 +739,39 @@ export default function Home() {
                                           </span>
                                         ))}
                                       </div>
+                                    </div>
+                                  </div>
+                                  <div className="space-y-5">
+                                  <div className="flex flex-wrap gap-2">
+                                    {item.stats.map((stat) => (
+                                      <span
+                                        key={stat}
+                                        className="rounded-full border border-violet-400/30 bg-violet-400/10 px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-violet-100/80"
+                                      >
+                                        {stat}
+                                      </span>
+                                    ))}
+                                  </div>
+                                  {item.image ? (
+                                    <div className="overflow-hidden rounded-xl border border-white/10 bg-black/40">
+                                      <img
+                                        src={item.image}
+                                        alt={item.imageAlt}
+                                        className="h-40 w-full object-cover"
+                                      />
+                                    </div>
+                                  ) : null}
+                                    <div>
+                                      <div className="text-xs uppercase tracking-[0.2em] text-violet-200/70">
+                                        Impact
+                                      </div>
+                                      <ul className="mt-3 space-y-2 pl-5 text-[13px]">
+                                        {item.impact.map((detail) => (
+                                          <li key={detail} className="list-disc">
+                                            {detail}
+                                          </li>
+                                        ))}
+                                      </ul>
                                     </div>
                                   </div>
                                 </div>
