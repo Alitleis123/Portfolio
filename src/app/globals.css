@@ -304,27 +304,13 @@ body {
 
 .section-divider {
   position: relative;
-  height: 18px;
-  margin: 26px auto 8px;
+  height: 28px;
+  margin: 24px auto 14px;
   max-width: 72rem;
 }
 
 .section-divider::before {
-  content: "";
-  position: absolute;
-  left: 10%;
-  right: 10%;
-  top: 50%;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(99, 102, 241, 0.35),
-    rgba(56, 189, 248, 0.28),
-    transparent
-  );
-  transform: translateY(-50%);
-  animation: divider-glow 6s ease-in-out infinite;
+  content: none;
 }
 
 .section-divider::after {
@@ -332,11 +318,14 @@ body {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 64px;
-  height: 1px;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(167, 139, 250, 0.5), transparent 70%);
-  opacity: 0.55;
+  width: 18px;
+  height: 18px;
+  transform: translate(-50%, -50%) rotate(45deg);
+  border: 2px solid rgba(167, 139, 250, 0.55);
+  box-shadow:
+    0 0 16px rgba(99, 102, 241, 0.45),
+    inset 0 0 10px rgba(99, 102, 241, 0.35);
+  background: rgba(9, 12, 20, 0.6);
 }
 
 .ring-pulse::after {

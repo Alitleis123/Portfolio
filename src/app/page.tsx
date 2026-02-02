@@ -26,8 +26,12 @@ const heroItem: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
-const SectionDivider = () => (
-  <div className="section-divider" aria-hidden="true" />
+type SectionDividerProps = {
+  className?: string;
+};
+
+const SectionDivider = ({ className }: SectionDividerProps) => (
+  <div className={`section-divider${className ? ` ${className}` : ""}`} aria-hidden="true" />
 );
 
 export default function Home() {
@@ -540,6 +544,8 @@ export default function Home() {
             ))}
           </div>
         </motion.section>
+
+        <SectionDivider />
 
         <section
           id="terminal"
