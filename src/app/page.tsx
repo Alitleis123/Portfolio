@@ -304,7 +304,7 @@ export default function Home() {
             expressive UI, and thoughtful interaction.
           </p>
 
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
                 title: "Top Choice Realty",
@@ -352,6 +352,22 @@ export default function Home() {
                 images: [withBasePath("/projects/EternalSummary.png")],
               },
               {
+                title: "DaVinci Resolve Smart Upscale Plugin",
+                repo: null,
+                demo: null,
+                showDemo: false,
+                tech: ["DaVinci Resolve", "Python", "Lua", "OpenCV", "FFmpeg"],
+                desc:
+                  "Built a custom DaVinci Resolve plugin to automatically upscale video footage to 4K with minimal quality loss.",
+                bullets: [
+                  "Implemented dead-frame detection to identify, remove, and resequence dead frames.",
+                  "Automated timeline reconstruction for smooth playback and export.",
+                  "Optimized upscale workflow with computer vision techniques.",
+                ],
+                image: withBasePath("/file.svg"),
+                images: [withBasePath("/file.svg")],
+              },
+              {
                 title: "CalorieCalculator",
                 repo: "https://github.com/Alitleis123/CalorieCalculator",
                 demo: "https://alitleis123.github.io/CalorieCalculator/",
@@ -369,7 +385,7 @@ export default function Home() {
             ].map((project) => (
               <motion.div
                 key={project.title}
-                className="group relative overflow-hidden rounded-2xl border border-white/15 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-6 backdrop-blur-xl"
+                className="group relative overflow-hidden rounded-2xl border border-white/15 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-5 backdrop-blur-xl"
                 whileHover={{ y: -8, boxShadow: "0 0 50px rgba(99,102,241,0.35)" }}
                 transition={{ type: "spring", stiffness: 200 }}
               >
@@ -384,7 +400,7 @@ export default function Home() {
                       title: project.title,
                     })
                   }
-                  className="group relative mb-4 h-44 w-full overflow-hidden rounded-xl border border-white/10 text-left"
+                  className="group relative mb-4 h-32 w-full overflow-hidden rounded-xl border border-white/10 text-left"
                   aria-label={`Expand ${project.title} preview`}
                 >
                   <img
@@ -402,7 +418,7 @@ export default function Home() {
 
                 <p className="mb-4 text-sm text-zinc-300">{project.desc}</p>
 
-                <div className="mb-5 flex flex-wrap gap-2">
+                <div className="mb-4 flex flex-wrap gap-2">
                   {project.tech.map((t) => (
                     <span
                       key={t}
@@ -419,18 +435,18 @@ export default function Home() {
                   ))}
                 </ul>
 
-                <div className="mt-6 flex flex-wrap gap-3">
+                <div className="mt-5 flex flex-wrap gap-3">
                   {project.demo ? (
                     <a
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center rounded-xl bg-indigo-500/90 px-5 py-3 text-sm font-medium text-white transition hover:bg-indigo-500"
+                      className="inline-flex items-center justify-center rounded-xl bg-indigo-500/90 px-4 py-2 text-sm font-medium text-white transition hover:bg-indigo-500"
                     >
                       Live Demo
                     </a>
                   ) : project.showDemo ? (
-                    <span className="inline-flex cursor-not-allowed items-center justify-center rounded-xl bg-indigo-500/40 px-5 py-3 text-sm font-medium text-white/60">
+                    <span className="inline-flex cursor-not-allowed items-center justify-center rounded-xl bg-indigo-500/40 px-4 py-2 text-sm font-medium text-white/60">
                       Live Demo
                     </span>
                   ) : null}
@@ -440,12 +456,12 @@ export default function Home() {
                       href={project.repo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10"
+                      className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-4 py-2 text-sm font-medium text-white/90 transition hover:bg-white/10"
                     >
                       View on GitHub
                     </a>
                   ) : (
-                    <span className="inline-flex cursor-not-allowed items-center justify-center rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white/50">
+                    <span className="inline-flex cursor-not-allowed items-center justify-center rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white/50">
                       View on GitHub
                     </span>
                   )}
