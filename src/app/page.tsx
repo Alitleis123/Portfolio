@@ -183,6 +183,85 @@ export default function Home() {
     },
   ];
 
+  const coreStack = [
+    "React",
+    "TypeScript",
+    "Next.js",
+    "Node.js",
+    "Python",
+    "Tailwind CSS",
+  ];
+
+  const stackGroups = [
+    {
+      title: "Frameworks & Libraries",
+      items: [
+        "React",
+        "Node.js/Express",
+        "React Router",
+        "MUI",
+        "Vite",
+        "Tkinter",
+        "Django (basics)",
+      ],
+      accent: "from-indigo-400/60 via-violet-400/30 to-transparent",
+    },
+    {
+      title: "Backend & Systems",
+      items: [
+        "REST APIs",
+        "Authentication (JWT)",
+        "Asynchronous Processing",
+        "System Integration",
+      ],
+      accent: "from-sky-400/60 via-cyan-400/30 to-transparent",
+    },
+    {
+      title: "Languages",
+      items: [
+        "Java",
+        "Kotlin",
+        "C#",
+        "C++",
+        "Python",
+        "Lua",
+        "JavaScript",
+        "TypeScript",
+      ],
+      accent: "from-emerald-400/60 via-teal-400/30 to-transparent",
+    },
+    {
+      title: "Databases",
+      items: [
+        "MongoDB (Mongoose, Atlas)",
+        "PostgreSQL",
+        "MySQL",
+      ],
+      accent: "from-fuchsia-400/60 via-pink-400/30 to-transparent",
+    },
+    {
+      title: "Tools",
+      items: [
+        "Git / GitHub",
+        "Linux",
+        "Heroku",
+        "GitHub Pages",
+        "Jest/JUnit",
+        "Arduino",
+      ],
+      accent: "from-amber-400/60 via-orange-400/30 to-transparent",
+    },
+    {
+      title: "Spoken Languages",
+      items: [
+        "English (Native/Bilingual)",
+        "Arabic (Native/Bilingual)",
+        "French (Limited Working)",
+      ],
+      accent: "from-slate-300/60 via-zinc-400/30 to-transparent",
+    },
+  ];
+
   return (
     <>
       <div className="relative min-h-screen overflow-hidden text-white">
@@ -480,91 +559,65 @@ export default function Home() {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          <div className="mb-12 flex items-center gap-4">
-            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-indigo-400/40 to-transparent" />
+          <div className="mb-10 text-center">
             <h2 className="section-title text-3xl font-bold text-indigo-400">Tech Stack</h2>
-            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-zinc-400/40 to-transparent" />
+            <p className="mt-3 text-sm text-zinc-400">
+              The tools I reach for first, plus the wider system I’m comfortable in.
+            </p>
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                title: "Frameworks & Libraries",
-                items: [
-                  "React",
-                  "Node.js/Express",
-                  "React Router",
-                  "MUI",
-                  "Vite",
-                  "Tkinter",
-                  "Django (basics)",
-                ],
-              },
-              {
-                title: "Backend & Systems",
-                items: [
-                  "REST APIs",
-                  "Authentication (JWT)",
-                  "Asynchronous Processing",
-                  "System Integration",
-                ],
-              },
-              {
-                title: "Languages",
-                items: [
-                  "Java",
-                  "Kotlin",
-                  "C#",
-                  "C++",
-                  "Python",
-                  "Lua",
-                  "JavaScript",
-                  "TypeScript",
-                ],
-              },
-              {
-                title: "Databases",
-                items: [
-                  "MongoDB (Mongoose, Atlas)",
-                  "PostgreSQL",
-                  "MySQL",
-                ],
-              },
-              {
-                title: "Tools",
-                items: [
-                  "Git / GitHub",
-                  "Linux",
-                  "Heroku",
-                  "GitHub Pages",
-                  "Jest/JUnit",
-                  "Arduino"
-                ],
-              },
-              {
-                title: "Spoken Languages",
-                items: [
-                  "English (Native/Bilingual)",
-                  "Arabic (Native/Bilingual)",
-                  "French (Limited Working)",
-                ],
-              },
-            ].map((group) => (
+          <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-6 shadow-[0_20px_60px_rgba(0,0,0,0.4)] backdrop-blur-xl">
+            <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-indigo-500/20 blur-3xl" />
+            <div className="pointer-events-none absolute -left-16 -bottom-16 h-48 w-48 rounded-full bg-sky-500/20 blur-3xl" />
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+              <div>
+                <div className="text-xs uppercase tracking-[0.3em] text-indigo-200/70">
+                  Core Stack
+                </div>
+                <h3 className="mt-3 text-2xl font-semibold text-white">
+                  Performance-first, UI-forward, production-ready.
+                </h3>
+                <p className="mt-2 max-w-xl text-sm text-zinc-300">
+                  Built around modern front-end systems, fast iteration, and clean handoffs from
+                  design to engineering.
+                </p>
+              </div>
+              <div className="flex flex-wrap justify-start gap-3 lg:justify-end">
+                {coreStack.map((tool) => (
+                  <span
+                    key={tool}
+                    className="rounded-full border border-white/15 bg-black/40 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/80"
+                  >
+                    {tool}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {stackGroups.map((group) => (
               <div
                 key={group.title}
-                className="rounded-2xl border border-white/15 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-6 backdrop-blur-xl"
+                className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/50 via-black/30 to-black/10 p-5 shadow-[0_16px_45px_rgba(0,0,0,0.35)] backdrop-blur-xl"
               >
-                <h3 className="mb-4 text-lg font-semibold">{group.title}</h3>
-                <div className="flex flex-wrap gap-2">
+                <div
+                  className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r ${group.accent}`}
+                />
+                <div className="flex items-center gap-3">
+                  <span className="h-2.5 w-2.5 rounded-full bg-indigo-400 shadow-[0_0_12px_rgba(99,102,241,0.8)]" />
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.25em] text-zinc-300">
+                    {group.title}
+                  </h3>
+                </div>
+                <div className="mt-4 flex flex-wrap gap-2">
                   {group.items.map((item) => (
-                    <div
+                    <span
                       key={item}
-                      className="rounded-xl border border-white/10 bg-black/30 px-4 py-3"
+                      className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-[11px] font-semibold text-white/80"
                     >
-                      <div className="text-sm font-semibold text-white">
-                        {item}
-                      </div>
-                    </div>
+                      {item}
+                    </span>
                   ))}
                 </div>
               </div>
