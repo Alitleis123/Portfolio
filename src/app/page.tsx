@@ -388,9 +388,9 @@ export default function Home() {
               {
                 title: "Top Choice Realty",
                 repo: "https://github.com/alitleis123/topchoicerealty",
-                demo: undefined,
+                demo: "https://alitleis123.github.io/topchoicerealty/#/",
                 showDemo: true,
-                tech: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+                tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "MongoDB"],
                 desc:
                   "Placeholder for a real estate website project. Details and visuals coming soon.",
                 bullets: [
@@ -418,7 +418,8 @@ export default function Home() {
                   "Node.js",
                   "Express API",
                   "LLM API",
-                  "Prompting",
+                  "Fly.io",
+                  "Docker",
                 ],
                 desc:
                   "A Chrome extension that uses AI to summarize the webpage you’re currently viewing into quick, readable takeaways.",
