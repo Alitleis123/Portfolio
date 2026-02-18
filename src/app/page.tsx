@@ -244,7 +244,7 @@ export default function Home() {
       items: [
         "Git / GitHub",
         "Linux",
-        "Docker (basic)",
+        "Docker",
         "PowerShell",
         "Azure DevOps",
         "Heroku",
