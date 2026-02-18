@@ -43,7 +43,7 @@ export default function TerminalGuide() {
   const [input, setInput] = useState("");
   const [lines, setLines] = useState<Line[]>(INITIAL_LINES);
   const [typing, setTyping] = useState<null | { id: string; text: string; index: number; runId: number }>(null);
-  const endRef = useRef<HTMLDivElement | null>(null);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const queueRef = useRef<ReactNode[]>([]);
   const typingTimerRef = useRef<number | null>(null);
@@ -128,14 +128,14 @@ export default function TerminalGuide() {
   );
 
   useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
     requestAnimationFrame(() => {
-      endRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      container.scrollTo({ top: container.scrollHeight, behavior: "smooth" });
     });
   }, [lines]);
 
-  useEffect(() => {
-    focusInput();
-  }, []);
+
 
   useEffect(() => {
     typingRef.current = typing;
@@ -270,7 +270,10 @@ export default function TerminalGuide() {
         </button>
       </div>
 
-      <div className="mt-6 max-h-[340px] min-h-[190px] space-y-4 overflow-auto rounded-2xl border border-white/10 bg-black/50 p-6 text-[15px] leading-7 text-violet-100/90 font-mono">
+      <div
+        ref={scrollRef}
+        className="mt-6 max-h-[340px] min-h-[190px] space-y-4 overflow-auto rounded-2xl border border-white/10 bg-black/50 p-6 text-[15px] leading-7 text-violet-100/90 font-mono"
+      >
         {lines.map((line) => (
           <div
             key={line.id}
@@ -279,7 +282,6 @@ export default function TerminalGuide() {
             {line.content}
           </div>
         ))}
-        <div ref={endRef} />
       </div>
 
       <div className="mt-6 grid gap-5">

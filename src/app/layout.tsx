@@ -20,12 +20,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html:
-              "if (history.scrollRestoration) { history.scrollRestoration = 'manual'; } var root=document.documentElement; var prev=root.style.scrollBehavior; root.style.scrollBehavior='auto'; window.scrollTo(0,0); setTimeout(function(){ root.style.scrollBehavior=prev||''; },0); window.addEventListener('pageshow', function () { var prev2=root.style.scrollBehavior; root.style.scrollBehavior='auto'; window.scrollTo(0,0); setTimeout(function(){ root.style.scrollBehavior=prev2||''; },0); });",
-          }}
-        />
       </head>
       <body className="relative min-h-screen bg-black text-white antialiased">
         <ResetAnimationsOnLoad>
