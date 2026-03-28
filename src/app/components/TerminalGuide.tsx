@@ -66,30 +66,40 @@ export default function TerminalGuide() {
         </pre>,
       ],
       about: [
-        "👋 Hey! I’m Ali — a CS student at Northeastern who loves clean UI and performance.",
-        "📍 Based in Boston • Open to software engineering co-ops & internships.",
-        "🎯 I enjoy building thoughtful products that feel fast, polished, and easy to use.",
-        "✨ Fun fact: I’m into video editing and fitness outside of coding.",
+        "Hey! I'm Ali -- a CS student at Northeastern (Class of 2028), originally from New York, now based in Boston.",
+        "I build software I'd actually want to use: fast, clean, and intentional.",
+        "Open to software engineering co-ops & internships for Summer/Fall 2026.",
+        "Outside of code: video editing in DaVinci Resolve & After Effects, and consistent gym training.",
       ],
       skills: [
-        "Frontend: Next.js, React, TypeScript, Tailwind, Framer Motion",
-        "Backend: Node.js, Express, REST APIs",
-        "Tools: Git, Docker, Linux",
+        "Frontend:  Next.js, React, TypeScript, Tailwind CSS, Framer Motion",
+        "Backend:   Node.js, Express, REST APIs, Authentication (JWT)",
+        "Databases: MongoDB (Mongoose, Atlas), PostgreSQL, MySQL",
+        "Languages: TypeScript, JavaScript, Python, C#, Java, C++, Lua, Kotlin",
+        "Tools:     Git, Docker, Linux, PowerShell, Azure DevOps, GitHub Pages",
+        "Creative:  DaVinci Resolve, After Effects, OpenCV, FFmpeg",
       ],
       experience: [
-        "🧰 Computer Technician Intern — Robert DeFalco Realty (Jun–Sep 2023).",
-        "💻 FrontEnd Developer Intern — Top Choice Realty (Jun–Sep 2025).",
+        "Computer Technician Intern -- Robert DeFalco Realty (Jun-Sep 2023)",
+        "  Set up 20-30 workstations, resolved ~10-15 tickets/week, standardized configs.",
+        "Frontend Developer Intern -- Top Choice Realty (Jun-Sep 2025)",
+        "  Built RESTful APIs, responsive UI, and automated data cleanup with Python.",
       ],
       projects: [
-        "🏡 Top Choice Realty — real estate platform (in progress).",
-        "🧠 Eternal Summary — Chrome extension for AI summaries.",
-        "💪 CalorieCalculator — maintenance and goal calculator.",
+        "Top Choice Realty     -- Full-stack real estate platform (React, Node, MongoDB)",
+        "Eternal Summary       -- Chrome MV3 extension for AI-powered page summaries",
+        "DaVinci Smart Upscale -- Plugin using OpenCV + FFmpeg for 4K upscaling",
+        "CalorieCalculator     -- Responsive React BMI & calorie calculator",
       ],
-      education: ["Northeastern University — Class of 2028."],
+      education: [
+        "Northeastern University -- B.S. Computer Science, Class of 2028",
+        "Boston, MA",
+      ],
       contact: [
-        "📧 School: tleis.a@northeastern.edu",
-        "✉️ Personal: alitleis0731@gmail.com",
-        "📍 Location: Boston, MA",
+        "Email:    tleis.a@northeastern.edu",
+        "LinkedIn: linkedin.com/in/ali-tleis-091800247",
+        "GitHub:   github.com/Alitleis123",
+        "Location: Boston, MA",
       ],
       resume: [
         "Resume PDF:",
@@ -134,8 +144,6 @@ export default function TerminalGuide() {
       container.scrollTo({ top: container.scrollHeight, behavior: "smooth" });
     });
   }, [lines]);
-
-
 
   useEffect(() => {
     typingRef.current = typing;
@@ -247,7 +255,7 @@ export default function TerminalGuide() {
 
   return (
     <div
-      className="rounded-[28px] border border-violet-400/30 bg-black/70 p-8 shadow-2xl shadow-violet-500/20 backdrop-blur"
+      className="rounded-[28px] border border-violet-400/30 bg-black/80 p-8 shadow-2xl shadow-violet-500/20"
       onClick={focusInput}
       onPointerDown={focusInput}
       tabIndex={0}

@@ -62,7 +62,6 @@ body {
   inset: 0;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/></filter><rect width='120' height='120' filter='url(%23n)' opacity='0.35'/></svg>");
   opacity: 0.08;
-  mix-blend-mode: soft-light;
   pointer-events: none;
 }
 
@@ -602,19 +601,99 @@ body {
 }
 
 @keyframes slowRotate {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 .background-rings svg {
   animation: slowRotate 120s linear infinite;
 }
+
+@keyframes orb-left {
+  0%, 100% { transform: translate(0, 0); }
+  50%       { transform: translate(40px, -30px); }
+}
+
+@keyframes orb-right {
+  0%, 100% { transform: translate(0, 0); }
+  50%       { transform: translate(-30px, 25px); }
+}
+
+@keyframes ambient-pulse {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 0.85; }
+}
+
+@keyframes particle-float {
+  0%, 100% { transform: translate(0, 0);    opacity: 0.2; }
+  50%       { transform: translate(12px, -28px); opacity: 0.7; }
+}
+
+.orb-left {
+  animation: orb-left 18s ease-in-out infinite;
+  will-change: transform;
+}
+
+.orb-right {
+  animation: orb-right 20s ease-in-out infinite;
+  will-change: transform;
+}
+
+.ambient-pulse {
+  animation: ambient-pulse 14s ease-in-out infinite;
+}
+
+.particle-float {
+  animation: particle-float ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes ring-pulse-1 {
+  0%, 100% { stroke-width: 1.5px; transform: scale(1); }
+  50%       { stroke-width: 4.5px; transform: scale(1.07); }
+}
+
+@keyframes ring-pulse-2 {
+  0%, 100% { stroke-width: 1px; transform: scale(1); }
+  50%       { stroke-width: 3.5px; transform: scale(1.05); }
+}
+
+@keyframes ring-pulse-3 {
+  0%, 100% { stroke-width: 0.8px; transform: scale(1); }
+  50%       { stroke-width: 2.8px; transform: scale(1.04); }
+}
+
+.ring-1, .ring-2, .ring-3 {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.ring-1 { animation: ring-pulse-1 5s   ease-in-out infinite; }
+.ring-2 { animation: ring-pulse-2 6.5s ease-in-out infinite; }
+.ring-3 { animation: ring-pulse-3 8s   ease-in-out infinite; }
+
+.project-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  will-change: transform;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 50px rgba(99, 102, 241, 0.35);
+}
 section {
   scroll-margin-top: 6.5rem;
+}
+
+.nav-link-active::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
 }
 
 /* =========================

@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { useEffect, useState } from "react";
+import { FaGithub, FaLinkedin, FaEnvelope, FaDownload, FaMapMarkerAlt } from "react-icons/fa";
 import TerminalGuide from "./components/TerminalGuide";
 
 const fadeUp: Variants = {
@@ -281,9 +282,9 @@ export default function Home() {
 
         <section
           id="about"
-          className="relative z-10 mx-auto flex min-h-[80vh] max-w-7xl items-start pt-28 px-10"
+          className="relative z-10 mx-auto flex min-h-[80vh] max-w-7xl items-start pt-28 px-5 md:px-10"
         >
-          <div className="grid w-full grid-cols-1 items-center gap-20 md:grid-cols-2">
+          <div className="grid w-full grid-cols-1 items-center gap-10 md:gap-20 md:grid-cols-2">
 
             {/* LEFT — NAME */}
             <div className="flex flex-col">
@@ -321,21 +322,31 @@ export default function Home() {
                 <a
                   href="https://www.linkedin.com/in/ali-tleis-091800247/"
                   target="_blank"
-                  className="rounded-xl border border-white/20 bg-white/5 px-6 py-3 text-sm font-medium text-white/90 backdrop-blur transition hover:bg-white/10"
+                  className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-6 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10"
                 >
+                  <FaLinkedin className="text-base" />
                   LinkedIn
                 </a>
 
                 <a
                   href="https://github.com/Alitleis123"
                   target="_blank"
-                  className="rounded-xl border border-white/15 bg-black/30 px-6 py-3 text-sm font-medium text-white/80 transition hover:bg-white/10"
+                  className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-black/30 px-6 py-3 text-sm font-medium text-white/80 transition hover:bg-white/10"
                 >
+                  <FaGithub className="text-base" />
                   GitHub
                 </a>
               </div>
 
-              <div className="mt-10 h-px w-64 bg-gradient-to-r from-zinc-500 to-transparent" />
+              <div className="mt-8 rounded-xl border border-white/10 bg-black/30 px-5 py-4">
+                <p className="text-sm leading-7 text-zinc-400">
+                  I&apos;m a CS student at Northeastern (Class of&nbsp;2028), originally from New York, now based in Boston.
+                  I build software I&apos;d actually want to use — fast, clean, and intentional.
+                  Outside of code, I edit video in DaVinci Resolve &amp; After Effects, and I train consistently — I like the discipline that comes with tracking progress over time.
+                </p>
+              </div>
+
+              <div className="mt-8 h-px w-64 bg-gradient-to-r from-zinc-500 to-transparent" />
 
               <div className="mt-10 grid gap-4 sm:grid-cols-2">
                 {[
@@ -346,7 +357,7 @@ export default function Home() {
                 ].map((item) => (
                   <div
                     key={item.title}
-                    className="rounded-xl border border-white/15 bg-black/30 p-4 backdrop-blur transition hover:bg-white/10"
+                    className="rounded-xl border border-white/15 bg-black/50 p-4 transition hover:bg-white/10"
                   >
                     <div className="text-sm font-semibold text-white">{item.title}</div>
                     <div className="mt-1 text-sm text-zinc-400">{item.text}</div>
@@ -357,7 +368,7 @@ export default function Home() {
 
             {/* RIGHT — IMAGE + INTRO */}
             <div className="flex justify-end">
-              <div className="relative w-full max-w-md rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl p-6">
+              <div className="relative w-full max-w-md rounded-2xl border border-indigo-500/25 bg-black/60 p-6 shadow-[0_0_60px_rgba(99,102,241,0.15),0_0_120px_rgba(56,189,248,0.07)]">
                 <div className="relative mb-6 h-64 w-full overflow-hidden rounded-xl">
                   <img
                     src={withBasePath("/portrait/36B2F96D-AEC4-4C74-BA04-B7D58EE30BE0.jpg")}
@@ -401,8 +412,8 @@ export default function Home() {
               {
                 title: "Top Choice Realty",
                 repo: "https://github.com/alitleis123/topchoicerealty",
-                demo: "https://alitleis123.github.io/topchoicerealty/#/",
-                showDemo: true,
+                demo: null,
+                showDemo: false,
                 tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "MongoDB"],
                 desc:
                   "Full-stack real estate platform with authenticated workflows, schema-driven data, and reliable CRUD pipelines.",
@@ -478,11 +489,9 @@ export default function Home() {
                 images: [withBasePath("/projects/CalorieCalculator.png")],
               },
             ].map((project) => (
-              <motion.div
+              <div
                 key={project.title}
-                className="group relative overflow-hidden rounded-2xl border border-white/15 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-5 backdrop-blur-xl"
-                whileHover={{ y: -8, boxShadow: "0 0 50px rgba(99,102,241,0.35)" }}
-                transition={{ type: "spring", stiffness: 200 }}
+                className="project-card group relative overflow-hidden rounded-2xl border border-white/15 bg-white/5 p-5"
               >
                 <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
                   <div className="absolute -inset-10 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.25),transparent_65%)]" />
@@ -504,7 +513,7 @@ export default function Home() {
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.08]"
                   />
                   <div className="absolute inset-0 bg-black/25 transition group-hover:bg-black/10" />
-                  <div className="pointer-events-none absolute bottom-3 right-3 rounded-lg border border-white/15 bg-black/40 px-3 py-1 text-xs text-white/80 backdrop-blur">
+                  <div className="pointer-events-none absolute bottom-3 right-3 rounded-lg border border-white/15 bg-black/70 px-3 py-1 text-xs text-white/80">
                     Click to expand
                   </div>
                 </button>
@@ -561,7 +570,7 @@ export default function Home() {
                     </span>
                   )}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </motion.section>
@@ -582,7 +591,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-6 shadow-[0_20px_60px_rgba(0,0,0,0.4)] backdrop-blur-xl">
+          <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-[#0d0f18]/90 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
             <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-indigo-500/20 blur-3xl" />
             <div className="pointer-events-none absolute -left-16 -bottom-16 h-48 w-48 rounded-full bg-sky-500/20 blur-3xl" />
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
@@ -611,11 +620,23 @@ export default function Home() {
             </div>
           </div>
 
+          {/* Top Languages */}
+          <div className="mt-10 overflow-hidden rounded-2xl border border-white/10">
+            <img
+              src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=Alitleis123&layout=compact&hide_border=true&bg_color=0d0f18&title_color=818cf8&text_color=94a3b8&langs_count=6&card_width=800"
+              alt="Top languages"
+              className="w-full h-auto"
+            />
+            <div className="border-t border-white/5 bg-[#0d0f18] px-5 py-2.5 text-xs text-zinc-500">
+              Based on public GitHub repositories only — does not reflect my full language experience.
+            </div>
+          </div>
+
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {stackGroups.map((group) => (
               <div
                 key={group.title}
-                className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/50 via-black/30 to-black/10 p-5 shadow-[0_16px_45px_rgba(0,0,0,0.35)] backdrop-blur-xl"
+                className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/50 p-5 shadow-[0_16px_45px_rgba(0,0,0,0.35)]"
               >
                 <div
                   className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r ${group.accent}`}
@@ -643,9 +664,13 @@ export default function Home() {
 
         <SectionDivider />
 
-        <section
+        <motion.section
           id="terminal"
           className="relative z-10 mx-auto max-w-6xl px-6 pb-24 pt-6"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
         >
           <div className="mb-10 text-center">
             <h2 className="section-title text-4xl font-semibold text-violet-300">Terminal</h2>
@@ -657,14 +682,18 @@ export default function Home() {
           <div className="mx-auto max-w-5xl">
             <TerminalGuide />
           </div>
-        </section>
+        </motion.section>
 
         <SectionDivider />
 
         {/* TIMELINE */}
-        <section
+        <motion.section
           id="timeline"
           className="relative z-10 mx-auto max-w-6xl px-6 pb-24 pt-10"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
         >
           <div className="mb-14 text-center">
             <h2 className="section-title text-3xl font-bold text-violet-300">Timeline</h2>
@@ -681,7 +710,6 @@ export default function Home() {
                 return (
                   <motion.div
                     key={`${item.year}-${item.title}`}
-                    layout
                     className="relative grid gap-6 lg:grid-cols-[120px_1fr]"
                     initial={{ opacity: 0, y: 18 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -720,7 +748,7 @@ export default function Home() {
 
                       <motion.div
                         layout
-                        className={`relative w-full ${isOpen ? "max-w-[1100px]" : "max-w-[720px]"} rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 via-white/[0.03] to-transparent p-6 shadow-[0_18px_40px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-all duration-300`}
+                        className={`relative w-full ${isOpen ? "max-w-[1100px]" : "max-w-[720px]"} rounded-2xl border border-white/10 bg-[#0d0f18]/90 p-6 shadow-[0_18px_40px_rgba(0,0,0,0.45)] transition-all duration-300`}
                         style={{ borderColor: isOpen ? item.accent : undefined }}
                       >
                         <div
@@ -871,7 +899,7 @@ export default function Home() {
               })}
             </div>
           </div>
-        </section>
+        </motion.section>
 
         <SectionDivider />
 
@@ -892,7 +920,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/15 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-8 backdrop-blur-xl">
+          <div className="rounded-2xl border border-white/15 bg-[#0d0f18]/90 p-8">
             <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <h3 className="text-xl font-semibold">Ali Tleis — Resume</h3>
@@ -934,11 +962,15 @@ export default function Home() {
         <SectionDivider />
 
         {/* CONTACT */}
-        <section
+        <motion.section
           id="contact"
           className="relative z-10 mx-auto max-w-6xl px-6 py-24"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
         >
-          <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 via-white/[0.02] to-transparent p-10 shadow-[0_20px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+          <div className="rounded-3xl border border-white/10 bg-[#0d0f18]/90 p-10 shadow-[0_20px_50px_rgba(0,0,0,0.35)]">
             <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
               <div>
                 <h2 className="section-title text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-zinc-200 to-slate-400">
@@ -956,19 +988,26 @@ export default function Home() {
                   “A builder who cares about performance and experience.” — Robert DeFalco, CEO
                 </div>
 
+                <blockquote className="mt-5 border-l-2 border-indigo-500/50 pl-4">
+                  <p className="text-sm italic text-zinc-400">&ldquo;Make it work, make it right, make it fast.&rdquo;</p>
+                  <cite className="mt-1 block text-xs text-zinc-600 not-italic">— Kent Beck</cite>
+                </blockquote>
+
                 <div className="mt-8 flex flex-wrap gap-4">
                   <a
                     href="mailto:tleis.a@northeastern.edu"
-                    className="rounded-xl border border-white/20 bg-white/5 px-6 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10"
+                    className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-6 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10"
                   >
+                    <FaEnvelope className="text-base" />
                     Email Me
                   </a>
                   <a
                     href={withBasePath("/resume/resume.pdf")}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-xl border border-indigo-400/40 bg-indigo-500/20 px-6 py-3 text-sm font-medium text-indigo-100 transition hover:bg-indigo-500/30"
+                    className="inline-flex items-center gap-2 rounded-xl border border-indigo-400/40 bg-indigo-500/20 px-6 py-3 text-sm font-medium text-indigo-100 transition hover:bg-indigo-500/30"
                   >
+                    <FaDownload className="text-sm" />
                     View Resume
                   </a>
                 </div>
@@ -986,33 +1025,18 @@ export default function Home() {
                         href="mailto:tleis.a@northeastern.edu"
                         className="mt-2 inline-flex items-center gap-2 text-base font-medium text-white transition hover:text-indigo-200"
                       >
+                        <FaEnvelope className="text-sm text-zinc-400" />
                         tleis.a@northeastern.edu
                       </a>
                     </div>
-                    <div>
+                    <div className="pt-2 text-sm text-zinc-300">
                       <span className="block text-[11px] uppercase tracking-widest text-zinc-500">
-                        Personal Email
+                        Location
                       </span>
-                      <a
-                        href="mailto:alitleis0731@gmail.com"
-                        className="mt-2 inline-flex items-center gap-2 text-base font-medium text-white transition hover:text-indigo-200"
-                      >
-                        alitleis0731@gmail.com
-                      </a>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4 pt-2 text-sm text-zinc-300">
-                      <div>
-                        <span className="block text-[11px] uppercase tracking-widest text-zinc-500">
-                          Location
-                        </span>
-                        <p className="mt-1">Boston, MA</p>
-                      </div>
-                      <div>
-                        <span className="block text-[11px] uppercase tracking-widest text-zinc-500">
-                          Phone
-                        </span>
-                        <p className="mt-1">347‑513‑4098</p>
-                      </div>
+                      <p className="mt-1 inline-flex items-center gap-2">
+                        <FaMapMarkerAlt className="text-sm text-zinc-400" />
+                        Boston, MA
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -1054,18 +1078,21 @@ export default function Home() {
                         desc: "Projects, experiments, and source code",
                         href: "https://github.com/Alitleis123",
                         external: true,
+                        icon: <FaGithub className="text-lg text-white/60" />,
                       },
                       {
                         title: "LinkedIn",
                         desc: "Professional background and updates",
                         href: "https://www.linkedin.com/in/ali-tleis-091800247/",
                         external: true,
+                        icon: <FaLinkedin className="text-lg text-white/60" />,
                       },
                       {
                         title: "Portfolio Projects",
                         desc: "Selected featured work",
                         href: "#projects",
                         external: false,
+                        icon: null,
                       },
                     ].map((item) =>
                       item.external ? (
@@ -1074,33 +1101,31 @@ export default function Home() {
                           href={item.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group block rounded-xl border border-white/10 bg-black/40 px-4 py-3 transition hover:border-white/30 hover:bg-white/10"
+                          className="group flex items-center gap-3 rounded-xl border border-white/10 bg-black/40 px-4 py-3 transition hover:border-white/30 hover:bg-white/10"
                         >
-                          <div className="flex items-center justify-between gap-3">
-                            <div>
-                              <div className="font-medium text-white">{item.title}</div>
-                              <div className="text-xs text-zinc-400">{item.desc}</div>
-                            </div>
-                            <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 transition group-hover:text-indigo-200">
-                              Visit
-                            </span>
+                          {item.icon}
+                          <div className="flex-1">
+                            <div className="font-medium text-white">{item.title}</div>
+                            <div className="text-xs text-zinc-400">{item.desc}</div>
                           </div>
+                          <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 transition group-hover:text-indigo-200">
+                            Visit
+                          </span>
                         </a>
                       ) : (
                         <a
                           key={item.title}
                           href={item.href}
-                          className="group block rounded-xl border border-white/10 bg-black/40 px-4 py-3 transition hover:border-white/30 hover:bg-white/10"
+                          className="group flex items-center gap-3 rounded-xl border border-white/10 bg-black/40 px-4 py-3 transition hover:border-white/30 hover:bg-white/10"
                         >
-                          <div className="flex items-center justify-between gap-3">
-                            <div>
-                              <div className="font-medium text-white">{item.title}</div>
-                              <div className="text-xs text-zinc-400">{item.desc}</div>
-                            </div>
-                            <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 transition group-hover:text-indigo-200">
-                              Explore
-                            </span>
+                          {item.icon}
+                          <div className="flex-1">
+                            <div className="font-medium text-white">{item.title}</div>
+                            <div className="text-xs text-zinc-400">{item.desc}</div>
                           </div>
+                          <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 transition group-hover:text-indigo-200">
+                            Explore
+                          </span>
                         </a>
                       )
                     )}
@@ -1110,7 +1135,7 @@ export default function Home() {
             </div>
           </div>
 
-        </section>
+        </motion.section>
         {lightbox ? (
           <div
             className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 p-6"
@@ -1120,7 +1145,7 @@ export default function Home() {
             aria-label={`${lightbox.title} expanded preview`}
           >
             <div
-              className="relative w-full max-w-5xl overflow-hidden rounded-2xl border border-white/15 bg-black/60 backdrop-blur"
+              className="relative w-full max-w-5xl overflow-hidden rounded-2xl border border-white/15 bg-black/80"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between gap-4 border-b border-white/10 px-5 py-4">
