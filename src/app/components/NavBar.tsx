@@ -7,7 +7,6 @@ const NAV_SECTIONS = [
   { id: "about",      label: "About" },
   { id: "projects",   label: "Projects" },
   { id: "tech-stack", label: "Tech Stack" },
-  { id: "terminal",   label: "Terminal" },
   { id: "timeline",   label: "Timeline" },
   { id: "resume",     label: "Resume" },
   { id: "contact",    label: "Contact" },
@@ -39,7 +38,6 @@ export default function NavBar() {
 
   return (
     <>
-      {/* Desktop nav */}
       <nav className="hidden md:flex items-center gap-5 text-sm text-white/60">
         {NAV_SECTIONS.map(({ id, label }) => (
           <a
@@ -77,7 +75,6 @@ export default function NavBar() {
         </div>
       </nav>
 
-      {/* Mobile hamburger */}
       <button
         type="button"
         className="md:hidden flex flex-col justify-center gap-[5px] p-2"
@@ -89,7 +86,6 @@ export default function NavBar() {
         <span className={`block h-[2px] w-5 bg-white/80 origin-center transition-all duration-200 ${menuOpen ? "-translate-y-[7px] -rotate-45" : ""}`} />
       </button>
 
-      {/* Mobile dropdown */}
       {menuOpen && (
         <div className="absolute left-0 right-0 top-full mt-2 rounded-2xl border border-white/10 bg-black/95 p-4 flex flex-col gap-1 text-sm md:hidden z-50">
           {NAV_SECTIONS.map(({ id, label }) => (

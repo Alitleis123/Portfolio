@@ -3,7 +3,6 @@
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FaGithub, FaLinkedin, FaEnvelope, FaDownload, FaMapMarkerAlt } from "react-icons/fa";
-import TerminalGuide from "./components/TerminalGuide";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -27,11 +26,7 @@ const heroItem: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
-type SectionDividerProps = {
-  className?: string;
-};
-
-const SectionDivider = ({ className }: SectionDividerProps) => (
+const SectionDivider = ({ className }: { className?: string }) => (
   <div className={`section-divider${className ? ` ${className}` : ""}`} aria-hidden="true" />
 );
 
@@ -87,6 +82,11 @@ export default function Home() {
         "Azure DevOps",
         "Virtual Machines",
       ],
+      testimonial: {
+        quote: "A builder who cares about performance and experience.",
+        author: "Robert DeFalco",
+        role: "CEO, Robert DeFalco Realty",
+      },
       accent: "#7c3aed",
     },
     {
@@ -113,7 +113,7 @@ export default function Home() {
       impact: [
         "Tested outputs with sample pages and user feedback loops.",
         "Improved summary quality with better sanitization and parsing.",
-        "Built a reusable pipeline that’s easy to expand to new sources.",
+        "Built a reusable pipeline that's easy to expand to new sources.",
         "Increased reliability across diverse web content formats.",
       ],
       stats: ["User-tested", "Latency-focused", "LLM-powered"],
@@ -126,6 +126,7 @@ export default function Home() {
         "OpenAI API",
         "Fetch API",
       ],
+      testimonial: null,
       accent: "#38bdf8",
     },
     {
@@ -157,6 +158,7 @@ export default function Home() {
       ],
       stats: ["20–30% faster tasks", "Cleaner data", "Cross-team delivery"],
       tech: ["React", "TypeScript", "MongoDB", "REST APIs", "Tailwind CSS"],
+      testimonial: null,
       accent: "#6366f1",
     },
     {
@@ -188,6 +190,7 @@ export default function Home() {
       ],
       stats: ["Full-stack launch", "RESTful APIs", "Responsive UI"],
       tech: ["React", "TypeScript", "Node.js", "MongoDB", "REST APIs", "Tailwind CSS"],
+      testimonial: null,
       accent: "#22d3ee",
     },
   ];
@@ -249,30 +252,27 @@ export default function Home() {
       accent: "from-fuchsia-400/60 via-pink-400/30 to-transparent",
     },
     {
-      title: "Tools",
+      title: "DevOps & Deployment",
       items: [
         "Git / GitHub",
-        "Linux",
         "Docker",
-        "PowerShell",
         "Azure DevOps",
         "Heroku",
         "GitHub Pages",
-        "Jest/JUnit",
-        "OpenCV",
-        "FFmpeg",
-        "Arduino",
+        "Linux",
       ],
       accent: "from-amber-400/60 via-orange-400/30 to-transparent",
     },
     {
-      title: "Spoken Languages",
+      title: "Testing & Tooling",
       items: [
-        "English (Native/Bilingual)",
-        "Arabic (Native/Bilingual)",
-        "French (Limited Working)",
+        "Jest / JUnit",
+        "PowerShell",
+        "OpenCV",
+        "FFmpeg",
+        "Arduino",
       ],
-      accent: "from-slate-300/60 via-zinc-400/30 to-transparent",
+      accent: "from-rose-400/60 via-red-400/30 to-transparent",
     },
   ];
 
@@ -282,14 +282,13 @@ export default function Home() {
 
         <section
           id="about"
-          className="relative z-10 mx-auto flex min-h-[80vh] max-w-7xl items-start pt-28 px-5 md:px-10"
+          className="relative z-10 mx-auto max-w-6xl px-6 pt-28 pb-10"
         >
-          <div className="grid w-full grid-cols-1 items-center gap-10 md:gap-20 md:grid-cols-2">
-
-            {/* LEFT — NAME */}
+          {/* Hero */}
+          <div className="grid w-full grid-cols-1 items-center gap-16 md:grid-cols-2">
             <div className="flex flex-col">
               <motion.h1
-                className="mb-6 text-[4.5rem] font-light leading-tight tracking-wide"
+                className="mb-5 text-[4.5rem] font-light leading-[1.05] tracking-wide"
                 variants={heroContainer}
                 initial="hidden"
                 animate="visible"
@@ -302,23 +301,24 @@ export default function Home() {
                 </motion.span>
               </motion.h1>
 
-              <div className="mb-5 whitespace-nowrap text-xs font-medium uppercase tracking-[0.25em] text-zinc-500">
+              <div className="mb-6 text-xs font-medium uppercase tracking-[0.25em] text-zinc-500">
                 Lebanese‑American <span className="mx-2 opacity-40">•</span>
                 Boston, MA <span className="mx-2 opacity-40">•</span>
-                Northeastern ’28
+                Northeastern &apos;28
               </div>
 
               <motion.p
-                className="max-w-md text-lg text-zinc-400"
+                className="max-w-lg text-lg leading-8 text-zinc-400"
                 variants={heroContainer}
                 initial="hidden"
                 animate="visible"
               >
-                Computer Science student focused on building clean, scalable applications,
-                with a strong interest in expressive UI, motion design, and creative tooling.
+                CS student at Northeastern, originally from New York.
+                I care about building things that feel good to use — clean
+                interfaces, solid architecture, and attention to detail.
               </motion.p>
 
-              <div className="mt-10 flex flex-wrap items-center gap-4 pointer-events-auto">
+              <div className="mt-8 flex flex-wrap items-center gap-4 pointer-events-auto">
                 <a
                   href="https://www.linkedin.com/in/ali-tleis-091800247/"
                   target="_blank"
@@ -327,7 +327,6 @@ export default function Home() {
                   <FaLinkedin className="text-base" />
                   LinkedIn
                 </a>
-
                 <a
                   href="https://github.com/Alitleis123"
                   target="_blank"
@@ -337,56 +336,104 @@ export default function Home() {
                   GitHub
                 </a>
               </div>
-
-              <div className="mt-8 rounded-xl border border-white/10 bg-black/30 px-5 py-4">
-                <p className="text-sm leading-7 text-zinc-400">
-                  I&apos;m a CS student at Northeastern (Class of&nbsp;2028), originally from New York, now based in Boston.
-                  I build software I&apos;d actually want to use — fast, clean, and intentional.
-                  Outside of code, I edit video in DaVinci Resolve &amp; After Effects, and I train consistently — I like the discipline that comes with tracking progress over time.
-                </p>
-              </div>
-
-              <div className="mt-8 h-px w-64 bg-gradient-to-r from-zinc-500 to-transparent" />
-
-              <div className="mt-10 grid gap-4 sm:grid-cols-2">
-                {[
-                  { title: "What I Build", text: "Full‑stack web apps, APIs, and interactive experiences." },
-                  { title: "Tools I Use", text: "Next.js, React, TypeScript, Node, Tailwind, Framer Motion." },
-                  { title: "Creative Work", text: "Video editing with DaVinci Resolve & After Effects." },
-                  { title: "Fitness", text: "Consistent lifting and training — I like tracking progress and building discipline over time." },
-                ].map((item) => (
-                  <div
-                    key={item.title}
-                    className="rounded-xl border border-white/15 bg-black/50 p-4 transition hover:bg-white/10"
-                  >
-                    <div className="text-sm font-semibold text-white">{item.title}</div>
-                    <div className="mt-1 text-sm text-zinc-400">{item.text}</div>
-                  </div>
-                ))}
-              </div>
             </div>
 
-            {/* RIGHT — IMAGE + INTRO */}
-            <div className="flex justify-end">
-              <div className="relative w-full max-w-md rounded-2xl border border-indigo-500/25 bg-black/60 p-6 shadow-[0_0_60px_rgba(99,102,241,0.15),0_0_120px_rgba(56,189,248,0.07)]">
-                <div className="relative mb-6 h-64 w-full overflow-hidden rounded-xl">
-                  <img
-                    src={withBasePath("/portrait/36B2F96D-AEC4-4C74-BA04-B7D58EE30BE0.jpg")}
-                    alt="Ali Tleis portrait"
-                    className="h-full w-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/20" />
-                </div>
-
-                <p className="text-sm leading-7 text-zinc-400">
-                  I enjoy building thoughtful software experiences that combine solid
-                  engineering with clean visual design, motion, and usability.
-                </p>
-                <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+            <div className="flex justify-center md:justify-end">
+              <div className="relative aspect-[3/4] w-full max-w-sm overflow-hidden rounded-2xl border border-indigo-500/25 shadow-[0_0_60px_rgba(99,102,241,0.15),0_0_120px_rgba(56,189,248,0.07)]">
+                <img
+                  src={withBasePath("/portrait/36B2F96D-AEC4-4C74-BA04-B7D58EE30BE0.jpg")}
+                  alt="Ali Tleis portrait"
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
               </div>
             </div>
-
           </div>
+
+          {/* About Details */}
+          <motion.div
+            className="mt-20"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <div className="grid gap-6 lg:grid-cols-3">
+              {/* Education */}
+              <div className="rounded-2xl border border-white/10 bg-[#0d0f18]/90 p-6 shadow-[0_16px_45px_rgba(0,0,0,0.35)]">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.25em] text-indigo-400">
+                  Education
+                </div>
+                <h3 className="mt-3 text-lg font-semibold text-white">Northeastern University</h3>
+                <p className="mt-1 text-sm text-zinc-400">B.S. Computer Science · Class of 2028</p>
+                <p className="mt-1 flex items-center gap-2 text-sm text-zinc-500">
+                  <FaMapMarkerAlt className="text-xs" />
+                  Boston, MA
+                </p>
+                <div className="mt-5 h-px w-full bg-white/5" />
+                <div className="mt-4">
+                  <div className="text-[10px] uppercase tracking-[0.2em] text-zinc-600">Coursework</div>
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {["Algorithms & Data Structures", "Object-Oriented Design", "Artificial Intelligence", "Discrete Structures", "Programming in C++", "Fundamentals of CS 1 & 2"].map((c) => (
+                      <span
+                        key={c}
+                        className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] text-zinc-400"
+                      >
+                        {c}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-4 h-px w-full bg-white/5" />
+                <div className="mt-4">
+                  <div className="text-[10px] uppercase tracking-[0.2em] text-zinc-600">Languages Spoken</div>
+                  <div className="mt-2 flex flex-wrap gap-3 text-sm text-zinc-400">
+                    <span>English <span className="text-zinc-600">· Native</span></span>
+                    <span>Arabic <span className="text-zinc-600">· Native</span></span>
+                  </div>
+                </div>
+              </div>
+
+              {/* What I Do */}
+              <div className="rounded-2xl border border-white/10 bg-[#0d0f18]/90 p-6 shadow-[0_16px_45px_rgba(0,0,0,0.35)]">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.25em] text-indigo-400">
+                  What I Do
+                </div>
+                <div className="mt-4 space-y-4">
+                  {[
+                    { label: "Full‑Stack Development", desc: "Web apps, APIs, and interactive experiences from front to back." },
+                    { label: "UI & Motion", desc: "Clean interfaces with purposeful animation using React and Framer Motion." },
+                    { label: "Creative Tooling", desc: "Video editing pipelines, browser extensions, and automation scripts." },
+                  ].map((item) => (
+                    <div key={item.label}>
+                      <div className="text-sm font-medium text-white">{item.label}</div>
+                      <div className="mt-0.5 text-sm text-zinc-500">{item.desc}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Outside of Code */}
+              <div className="rounded-2xl border border-white/10 bg-[#0d0f18]/90 p-6 shadow-[0_16px_45px_rgba(0,0,0,0.35)]">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.25em] text-indigo-400">
+                  Outside of Code
+                </div>
+                <div className="mt-4 space-y-4">
+                  {[
+                    { label: "Fitness", desc: "Consistent lifting — I like the discipline that comes with tracking progress." },
+                    { label: "Video Editing", desc: "DaVinci Resolve and After Effects for personal and freelance projects." },
+                    { label: "Gaming", desc: "Competitive FPS when I need to turn my brain off." },
+                    { label: "Always Learning", desc: "Picking up new tools, frameworks, and ideas outside of class." },
+                  ].map((item) => (
+                    <div key={item.label}>
+                      <div className="text-sm font-medium text-white">{item.label}</div>
+                      <div className="mt-0.5 text-sm text-zinc-500">{item.desc}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </section>
 
         {/* PROJECTS */}
@@ -407,7 +454,7 @@ export default function Home() {
             expressive UI, and thoughtful interaction.
           </p>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-6 sm:grid-cols-2">
             {[
               {
                 title: "Top Choice Realty",
@@ -504,7 +551,7 @@ export default function Home() {
                       title: project.title,
                     })
                   }
-                  className="group relative mb-4 h-32 w-full overflow-hidden rounded-xl border border-white/10 text-left"
+                  className="group relative mb-4 h-44 w-full overflow-hidden rounded-xl border border-white/10 text-left"
                   aria-label={`Expand ${project.title} preview`}
                 >
                   <img
@@ -587,7 +634,7 @@ export default function Home() {
           <div className="mb-10 text-center">
             <h2 className="section-title text-3xl font-bold text-indigo-400">Tech Stack</h2>
             <p className="mt-3 text-sm text-zinc-400">
-              The tools I reach for first, plus the wider system I’m comfortable in.
+              The tools I reach for first, plus the wider system I'm comfortable in.
             </p>
           </div>
 
@@ -620,18 +667,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Top Languages */}
-          <div className="mt-10 overflow-hidden rounded-2xl border border-white/10">
-            <img
-              src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=Alitleis123&layout=compact&hide_border=true&bg_color=0d0f18&title_color=818cf8&text_color=94a3b8&langs_count=6&card_width=800"
-              alt="Top languages"
-              className="w-full h-auto"
-            />
-            <div className="border-t border-white/5 bg-[#0d0f18] px-5 py-2.5 text-xs text-zinc-500">
-              Based on public GitHub repositories only — does not reflect my full language experience.
-            </div>
-          </div>
-
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {stackGroups.map((group) => (
               <div
@@ -659,28 +694,6 @@ export default function Home() {
                 </div>
               </div>
             ))}
-          </div>
-        </motion.section>
-
-        <SectionDivider />
-
-        <motion.section
-          id="terminal"
-          className="relative z-10 mx-auto max-w-6xl px-6 pb-24 pt-6"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <div className="mb-10 text-center">
-            <h2 className="section-title text-4xl font-semibold text-violet-300">Terminal</h2>
-            <p className="mt-3 text-sm text-zinc-400">
-              Type commands to explore my profile
-            </p>
-          </div>
-
-          <div className="mx-auto max-w-5xl">
-            <TerminalGuide />
           </div>
         </motion.section>
 
@@ -886,6 +899,16 @@ export default function Home() {
                                         ))}
                                       </ul>
                                     </div>
+                                    {item.testimonial ? (
+                                      <blockquote className="rounded-xl border border-violet-400/20 bg-violet-400/5 p-4">
+                                        <p className="text-sm italic text-violet-100/80">
+                                          &ldquo;{item.testimonial.quote}&rdquo;
+                                        </p>
+                                        <cite className="mt-2 block text-xs not-italic text-zinc-500">
+                                          — {item.testimonial.author}, {item.testimonial.role}
+                                        </cite>
+                                      </blockquote>
+                                    ) : null}
                                   </div>
                                 </div>
                               </motion.div>
@@ -915,7 +938,7 @@ export default function Home() {
           <div className="mb-12 text-center">
             <h2 className="section-title mb-4 text-3xl font-bold text-indigo-400">Resume</h2>
             <p className="mx-auto max-w-2xl text-lg text-zinc-300">
-              A quick overview of my experience and background.  
+              A quick overview of my experience and background.
               You can preview my resume below or download the full PDF.
             </p>
           </div>
@@ -971,24 +994,18 @@ export default function Home() {
           viewport={{ once: true }}
         >
           <div className="rounded-3xl border border-white/10 bg-[#0d0f18]/90 p-10 shadow-[0_20px_50px_rgba(0,0,0,0.35)]">
-            <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+            <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] items-start">
               <div>
                 <h2 className="section-title text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-zinc-200 to-slate-400">
-                  Let's Connect
+                  Let&apos;s Connect
                 </h2>
                 <p className="mt-5 text-lg leading-8 text-zinc-300">
-                  If you’d like to reach out about opportunities, projects, or anything else,
-                  feel free to get in touch. I’m always open to meaningful conversations and
+                  If you&apos;d like to reach out about opportunities, projects, or anything else,
+                  feel free to get in touch. I&apos;m always open to meaningful conversations and
                   new experiences.
                 </p>
-                <p className="mt-4 text-sm uppercase tracking-[0.2em] text-zinc-400">
-                  Actively seeking software engineering co-ops and internships
-                </p>
-                <div className="mt-6 inline-flex rounded-full border border-white/10 bg-black/40 px-5 py-2 text-xs uppercase tracking-[0.2em] text-zinc-400">
-                  “A builder who cares about performance and experience.” — Robert DeFalco, CEO
-                </div>
 
-                <blockquote className="mt-5 border-l-2 border-indigo-500/50 pl-4">
+                <blockquote className="mt-6 border-l-2 border-indigo-500/50 pl-4">
                   <p className="text-sm italic text-zinc-400">&ldquo;Make it work, make it right, make it fast.&rdquo;</p>
                   <cite className="mt-1 block text-xs text-zinc-600 not-italic">— Kent Beck</cite>
                 </blockquote>
@@ -1011,124 +1028,53 @@ export default function Home() {
                     View Resume
                   </a>
                 </div>
-
-                <div className="mt-8 rounded-2xl border border-white/10 bg-black/40 p-5">
-                  <div className="text-xs uppercase tracking-[0.2em] text-zinc-400">
-                    Primary Contact
-                  </div>
-                  <div className="mt-4 space-y-4">
-                    <div>
-                      <span className="block text-[11px] uppercase tracking-widest text-zinc-500">
-                        School Email
-                      </span>
-                      <a
-                        href="mailto:tleis.a@northeastern.edu"
-                        className="mt-2 inline-flex items-center gap-2 text-base font-medium text-white transition hover:text-indigo-200"
-                      >
-                        <FaEnvelope className="text-sm text-zinc-400" />
-                        tleis.a@northeastern.edu
-                      </a>
-                    </div>
-                    <div className="pt-2 text-sm text-zinc-300">
-                      <span className="block text-[11px] uppercase tracking-widest text-zinc-500">
-                        Location
-                      </span>
-                      <p className="mt-1 inline-flex items-center gap-2">
-                        <FaMapMarkerAlt className="text-sm text-zinc-400" />
-                        Boston, MA
-                      </p>
-                    </div>
-                  </div>
-                </div>
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-black/70 via-black/40 to-black/20 p-6 shadow-[inset_0_0_30px_rgba(99,102,241,0.08)]">
-                <h3 className="text-lg font-semibold text-white">Availability</h3>
-                <div className="mt-4 grid gap-4 text-sm text-zinc-300">
-                  <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-                    <div className="text-xs uppercase tracking-[0.2em] text-zinc-400">
-                      Location
-                    </div>
-                    <div className="mt-2 text-base text-white">Boston, MA</div>
+                <div className="space-y-5">
+                  <div>
+                    <span className="block text-[11px] uppercase tracking-[0.2em] text-zinc-500">Email</span>
+                    <a
+                      href="mailto:tleis.a@northeastern.edu"
+                      className="mt-1.5 inline-flex items-center gap-2 text-base font-medium text-white transition hover:text-indigo-200"
+                    >
+                      <FaEnvelope className="text-sm text-zinc-400" />
+                      tleis.a@northeastern.edu
+                    </a>
                   </div>
-                  <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-                    <div className="text-xs uppercase tracking-[0.2em] text-zinc-400">
-                      Status
-                    </div>
-                    <div className="mt-2 text-base text-white">
-                      Open to internships and co-ops
-                    </div>
-                  </div>
-                  <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-                    <div className="text-xs uppercase tracking-[0.2em] text-zinc-400">
-                      Response Time
-                    </div>
-                    <div className="mt-2 text-base text-white">Usually within 24 hours</div>
-                  </div>
-                </div>
 
-                <div className="mt-6 rounded-xl border border-white/10 bg-black/30 p-4">
-                  <div className="text-xs uppercase tracking-[0.2em] text-zinc-400">
-                    Find Me Online
+                  <div className="h-px w-full bg-white/5" />
+
+                  <div>
+                    <span className="block text-[11px] uppercase tracking-[0.2em] text-zinc-500">Location</span>
+                    <p className="mt-1.5 inline-flex items-center gap-2 text-base font-medium text-white">
+                      <FaMapMarkerAlt className="text-sm text-zinc-400" />
+                      Boston, MA
+                    </p>
                   </div>
-                  <div className="mt-4 space-y-3">
-                    {[
-                      {
-                        title: "GitHub",
-                        desc: "Projects, experiments, and source code",
-                        href: "https://github.com/Alitleis123",
-                        external: true,
-                        icon: <FaGithub className="text-lg text-white/60" />,
-                      },
-                      {
-                        title: "LinkedIn",
-                        desc: "Professional background and updates",
-                        href: "https://www.linkedin.com/in/ali-tleis-091800247/",
-                        external: true,
-                        icon: <FaLinkedin className="text-lg text-white/60" />,
-                      },
-                      {
-                        title: "Portfolio Projects",
-                        desc: "Selected featured work",
-                        href: "#projects",
-                        external: false,
-                        icon: null,
-                      },
-                    ].map((item) =>
-                      item.external ? (
-                        <a
-                          key={item.title}
-                          href={item.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group flex items-center gap-3 rounded-xl border border-white/10 bg-black/40 px-4 py-3 transition hover:border-white/30 hover:bg-white/10"
-                        >
-                          {item.icon}
-                          <div className="flex-1">
-                            <div className="font-medium text-white">{item.title}</div>
-                            <div className="text-xs text-zinc-400">{item.desc}</div>
-                          </div>
-                          <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 transition group-hover:text-indigo-200">
-                            Visit
-                          </span>
-                        </a>
-                      ) : (
-                        <a
-                          key={item.title}
-                          href={item.href}
-                          className="group flex items-center gap-3 rounded-xl border border-white/10 bg-black/40 px-4 py-3 transition hover:border-white/30 hover:bg-white/10"
-                        >
-                          {item.icon}
-                          <div className="flex-1">
-                            <div className="font-medium text-white">{item.title}</div>
-                            <div className="text-xs text-zinc-400">{item.desc}</div>
-                          </div>
-                          <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 transition group-hover:text-indigo-200">
-                            Explore
-                          </span>
-                        </a>
-                      )
-                    )}
+
+                  <div className="h-px w-full bg-white/5" />
+
+                  <div>
+                    <span className="block text-[11px] uppercase tracking-[0.2em] text-zinc-500">Socials</span>
+                    <div className="mt-3 flex gap-3">
+                      <a
+                        href="https://github.com/Alitleis123"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-black/30 text-white/60 transition hover:border-white/30 hover:bg-white/10 hover:text-white"
+                      >
+                        <FaGithub className="text-lg" />
+                      </a>
+                      <a
+                        href="https://www.linkedin.com/in/ali-tleis-091800247/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-black/30 text-white/60 transition hover:border-white/30 hover:bg-white/10 hover:text-white"
+                      >
+                        <FaLinkedin className="text-lg" />
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
