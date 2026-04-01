@@ -9,6 +9,10 @@ export const metadata: Metadata = {
   title: "Ali Tleis · Portfolio",
   description:
     "Personal portfolio of Ali Tleis — Lebanese-American developer based in Boston.",
+  icons: {
+    icon: "/portrait/Portfolio ICON.png",
+    apple: "/portrait/Portfolio ICON.png",
+  },
 };
 
 export default function RootLayout({
