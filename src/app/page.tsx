@@ -193,6 +193,38 @@ export default function Home() {
       testimonial: null,
       accent: "#22d3ee",
     },
+    {
+      year: "2026",
+      title: "DaVinci Resolve Smart Upscale Plugin",
+      range: "Jan 2026 – Present · Eternal2x.com",
+      desc: "Engineered a Python-based video processing pipeline to detect, segment, and reconstruct DaVinci Resolve timelines with 4K upscaling.",
+      image: withBasePath("/projects/eternal2x%20about.png"),
+      imageAlt: "Eternal2x Smart Upscale Plugin",
+      scope:
+        "Built a full video processing pipeline that integrates directly into DaVinci Resolve, automating motion detection, clip segmentation, and high-quality upscaling.",
+      highlights: [
+        "Engineered threshold-based frame detection to isolate active motion segments and remove redundant frames before interpolation.",
+        "Automated marker placement, clip segmentation, and timeline reconstruction via custom Lua scripting inside DaVinci Resolve.",
+        "Built a Python pipeline using OpenCV and FFmpeg for 4K upscaling and frame interpolation.",
+        "Packaged the workflow as a distributable plugin available at Eternal2x.com.",
+      ],
+      details: [
+        "Designed the detection algorithm to minimize false positives on slow-motion and static shots.",
+        "Used FFmpeg for frame interpolation and output encoding at target resolutions.",
+        "Structured the Lua scripts to hook cleanly into DaVinci's scripting API without modifying core project files.",
+        "Tested across multiple project types — short films, YouTube content, and professional edits.",
+      ],
+      impact: [
+        "Reduced manual clip cleanup time for editors working with large timelines.",
+        "Produced consistent 4K output without quality loss on upscaled footage.",
+        "Made professional-grade upscaling accessible as a one-click plugin.",
+        "Actively maintained and iterated based on user feedback post-launch.",
+      ],
+      stats: ["4K Upscaling", "Live Product", "Jan 2026–Present"],
+      tech: ["Python", "Lua", "OpenCV", "FFmpeg", "DaVinci Resolve API"],
+      testimonial: null,
+      accent: "#f59e0b",
+    },
   ];
 
   const coreStack = [
@@ -459,8 +491,8 @@ export default function Home() {
               {
                 title: "Top Choice Realty",
                 repo: "https://github.com/alitleis123/topchoicerealty",
-                demo: null,
-                showDemo: false,
+                demo: "https://alitleis123.github.io/topchoicerealty/",
+                showDemo: true,
                 tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "MongoDB"],
                 desc:
                   "Full-stack real estate platform with authenticated workflows, schema-driven data, and reliable CRUD pipelines.",
@@ -507,8 +539,8 @@ export default function Home() {
               {
                 title: "DaVinci Resolve Smart Upscale Plugin",
                 repo: "https://github.com/Alitleis123/DaVinchi-Resolve-Smart-Upscale-Plugin",
-                demo: null,
-                showDemo: false,
+                demo: "https://eternal2x.com",
+                showDemo: true,
                 tech: ["DaVinci Resolve", "Python", "Lua", "OpenCV", "FFmpeg"],
                 desc:
                   "DaVinci Resolve plugin that rebuilds clips via detection, segmentation, and timeline reconstruction.",
@@ -517,8 +549,11 @@ export default function Home() {
                   "Inserted markers, split clips, and reconstructed timelines programmatically.",
                   "Ran 4K upscaling and frame interpolation with OpenCV + FFmpeg.",
                 ],
-                image: withBasePath("/file.svg"),
-                images: [withBasePath("/file.svg")],
+                image: withBasePath("/projects/eternal2x%20about.png"),
+                images: [
+                  withBasePath("/projects/eternal2x%20about.png"),
+                  withBasePath("/projects/eternal2x%20download.png"),
+                ],
               },
               {
                 title: "CalorieCalculator",
