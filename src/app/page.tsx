@@ -513,7 +513,7 @@ export default function Home() {
               {
                 title: "Eternal Summary",
                 repo: "https://github.com/Alitleis123/Eternal-Summary",
-                demo: null,
+                demo: "https://alitleis123.github.io/Eternal-Summary/",
                 showDemo: false,
                 tech: [
                   "Chrome Extensions (MV3)",
